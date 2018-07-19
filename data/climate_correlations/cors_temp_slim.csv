@@ -1,0 +1,10 @@
+,MAT (normal),Fall temp. (normal),Winter temp. (normal),Spring temp. (normal),Summer temp. (normal),MAT (2014-2015),Fall temp. (2014),Winter temp. (2014-2015),Spring temp. (2015)
+Fall temp. (normal),0.97,,,,,,,,
+Winter temp. (normal),0.69,0.83,,,,,,,
+Spring temp. (normal),0.86,0.73,0.23,,,,,,
+Summer temp. (normal),0.72,0.54,0.01,0.94,,,,,
+MAT (2014-2015),0.71,0.68,0.62,0.44,0.48,,,,
+Fall temp. (2014),0.70,0.75,0.82,0.30,0.26,0.95,,,
+Winter temp. (2014-2015),0.60,0.74,0.95,0.11,-0.04,0.71,0.90,,
+Spring temp. (2015),0.28,0.05,-0.38,0.57,0.78,0.40,0.08,-0.35,
+Summer temp. (2015),0.25,0.05,-0.24,0.40,0.65,0.59,0.30,-0.14,0.93

@@ -1,0 +1,388 @@
+\documentclass{article}
+
+\usepackage{natbib}
+\bibliographystyle{chicago}
+
+\usepackage{authblk}
+
+\usepackage{multirow}
+
+\usepackage{siunitx}
+
+\usepackage{array}
+
+\usepackage{url}
+
+\usepackage{pdflscape}
+
+\usepackage{color}
+
+\usepackage{longtable}
+
+\usepackage{booktabs}
+
+\usepackage{caption}
+\captionsetup[figure]{labelfont={bf},name={Fig.},labelsep=period}
+\captionsetup[table]{labelfont={bf}}
+
+\usepackage{graphicx,subfig}
+
+\usepackage{geometry}
+\geometry{lmargin=1in}
+\geometry{bmargin=1in}
+\geometry{rmargin=1in}
+\geometry{tmargin=1in}
+
+\usepackage[bookmarks,bookmarksnumbered,%
+    allbordercolors={0.8 0.8 0.8},%
+    pagebackref,colorlinks=FALSE,%
+    ]{hyperref}
+
+\usepackage{caption}
+\captionsetup{labelsep=space,justification=justified,singlelinecheck=off}
+
+\usepackage{setspace}
+\doublespacing
+
+\usepackage{lineno}
+
+\newcommand{\beginsupplement}{%
+        \setcounter{table}{0}
+        \renewcommand{\thetable}{S\arabic{table}}%
+        \setcounter{figure}{0}
+        \renewcommand{\thefigure}{S\arabic{figure}}%
+     }
+
+\begin{document}
+
+\title{Geographic and climatic drivers of reproductive assurance in \textit{Clarkia pulchella}}
+\author[1,4]{Megan Bontrager}
+\author[2]{Christopher D. Muir}
+\author[3]{Amy L. Angert}
+\affil[1]{Department of Botany, University of British Columbia, Vancouver, British Columbia V6T 1Z4, Canada}
+\affil[2]{Biodiversity Research Centre and Botany Department, University of British Columbia, Vancouver, British Columbia V6T 1Z4, Canada}
+\affil[3]{Departments of Botany and Zoology, University of British Columbia, Vancouver, British Columbia V6T 1Z4, Canada}
+\affil[4]{Author for correspondence (mgbontrager@gmail.com)}
+\date{}
+\maketitle
+
+
+\noindent{Declaration of authorship: MB and ALA designed the experiment. MB conducted field work and data collection. MB and CDM performed statistical analyses. MB drafted the manuscript in consultation with ALA, with feedback and assistance from CDM. All authors contributed to manuscript drafts and approved the final version of the manuscript.}
+
+\newpage
+
+\linenumbers
+
+\section*{Abstract}
+
+Climate can affect plant populations through direct effects on physiology and fitness, and through indirect effects on their relationships with pollinating mutualists. We therefore expect that geographic variation in climate might lead to variation in plant mating systems. Biogeographic processes, such as range expansion, can also contribute to geographic patterns in mating system traits. We manipulated pollinator access to plants in eight sites spanning the geographic range of \textit{Clarkia pulchella} to investigate geographic and climatic drivers of seed set in the absence of pollinators (reproductive assurance) and overall plant reproduction. We examined how reproductive assurance, fruit production, and seed production varied with the position of sites within the range of the species and with temperature and precipitation. We found that reproductive assurance in \textit{C. pulchella} was greatest in populations in the northern part of the species' range, and was not well-explained by any of the climate variables that we considered. In the absence of pollinators, some populations of \textit{C. pulchella} have the capacity to increase fruit production, perhaps through resource reallocation, but this response is climate-dependent. Pollinators are important for reproduction in this species, and recruitment is sensitive to seed input. The degree of autonomous self-pollination that is possible in populations of this mixed-mating species may be shaped by historic biogeographic processes or variation in plant and pollinator community composition rather than variation in climate.
+
+
+\section*{Keywords}
+\textit{Clarkia}; geographic variation; pollination; range limits; self-pollination
+
+\section*{Introduction}
+
+Climate change can affect population dynamics directly by altering the survival and reproduction of individuals \citep{mcgraw2015northward}. In addition to these direct effects, climate change can indirectly affect species by altering their interactions with mutualists, predators, or competitors \citep{miller2015functional}. To make informed predictions about species' responses to climate change, we must understand both direct and indirect effects. For plant species, pollinators are likely to be an important medium for these indirect effects, as the reproductive success of primarily outcrossing taxa is often highly dependent on the actions of these mutualists \citep{burd1994principle, ashman2004pollen}. Changing environmental conditions can disrupt the reliability of pollination \citep{kudo2004does}. For example, changes in phenological cues might lead to mismatch between plants and pollinators \citep{kudo2013early}, pollinator populations may decline if they are maladapted to changing conditions \citep{williams2007vulnerability}, and the presence of invasive species can reduce visitation to native plants \citep{bjerknes2007alien, bruckman2016pollination}.  
+
+In the face of sustained mate or resource limitation, reliance on outcross pollen can limit seed production, and selection might favour individuals with floral traits that facilitate reproductive assurance via self-pollination \citep{bodbyl2011rapid}, including traits that allow for delayed self-pollination when outcross pollen has not been delivered. Reproductive assurance is the ability to self-pollinate, either autonomously or with the assistance of a pollinator, in order to offset deficits in pollen delivery. Limited resources, including limited water availability, can increase the cost of producing and maintaining attractive floral displays \citep{galen1999flowers}. This could lead to selection for individuals that can achieve high reproductive success without incurring the costs of showy displays. Similarly, short flowering seasons may increase the risks of waiting for pollinator service. Some habitat characteristics, such as limited numbers of suitable growing sites, may lead to sparser or smaller populations and in turn, mate limitation. Mate limitation can also occur even when conspecific individuals are abundant if pollinators are low in abundance or prefer to visit co-occurring species \citep{knight2005pollen}. When temporal variability in environmental conditions is high, selection might alternatively favour plasticity that allows for increased self-pollination in response to environmental cues associated with pollen limitation \citep{kay2013drought}. 
+
+Mate and resource limitation can co-vary with climatic conditions. Therefore, patterns in mating system traits may be correlated with the climatic gradients that underlie a species' geographic distribution. While climatic conditions can exert selection on mating system and, as a result, indirectly affect demographic \citep{lennartsson2002extinction, moeller2005ecologicalcontext} and genetic processes \citep{eckert2010plant, kramer2011influences}, climate can also directly affect demographic components. Climatic gradients may shape variation in life history or in the sensitivity of population growth rate to a specific demographic stage, leading to measurable correlations between some fitness components and climate variables across space \citep{doak2010demographic}. Inter-annual variability in climate may also be correlated with temporal variation in vital rates within a single population \citep{coulson2001age}. Our understanding of how climate affects population dynamics will benefit from examining the relationships of multiple variables (fitness components or strengths of biotic interactions) to variation in climate.
+
+Biogeographic processes can also shape mating system variation on the landscape. During range expansions, individuals capable of reproduction in the absence of mates or pollinators may be more likely to found new populations \citep{baker1955self, pannell2015scope}, creating a geographic cline in mating system variation, with a greater degree of self-compatibility or capacity for self-pollination near expanding or recently expanded range edges. Similar patterns might arise in regions where populations turn over frequently, where the ability to reproduce autonomously may be an important trait for individuals that are colonizing empty patches. Geographic variation in mating system may also be attributable to range overlap with pollinator taxa or with plant taxa that share pollinators. In mixed-mating plants, parts of the range that overlap with a reliable pollinator community might experience little selection for self-pollination. Overlap with a competing plant species may reduce pollination success and lead to selection for self-pollination.
+
+Empirical examinations of mating systems are infrequently carried out at the scale of geographic ranges (with exceptions including \citealt{busch2005evolution, herlihy2005evolution, moeller2005ecologicalcontext, dart2011broad, mimura2007adaptive}) and investigations of geographic variation in vital rates rarely consider mating system variation. The interplay of vital rates and mating systems across geographic and climatic space may be relevant not only to population dynamics within the range, but also to the dynamics that limit geographic distributions. Across environmental gradients, mating system variation might interact with other genetic and demographic processes to influence population persistence and adaptive response. For example, while highly selfing individuals might be expected to be good colonizers, they also might have limited genetic variation for adaptation to novel environments beyond the range edge \citep{wright2013evolutionary}. Investigating range-wide variation in reproduction may shed light on climate variables that limit range expansion.
+
+In this study, we investigate the relationships among climate, pollinator exclusion, and reproductive fitness components of a winter annual wildflower, \textit{Clarkia pulchella}. In a previous study, we used herbarium specimens to examine relationships between climate, mating system, and reproductive characteristics of this species. We found that summer precipitation was positively correlated with reproductive output and that warm temperatures were correlated with traits indicative of self-pollination \citep{bontrager2016effects}. Here, we employed field manipulations across the range of \textit{C. pulchella} to examine whether reproductive assurance co-varies with geographic range position and/or climate. We were specifically interested in the autonomous component of reproductive assurance, that is, the ability to transfer self-pollen in the absence of a pollinator (rather than the degree to which pollinators transfer self-pollen). \textit{C. pulchella} grows in sites that are very dry during the flowering season, particularly at the northern and southern range edges, so we expected that plants in these regions might have greater capacity to self-pollinate as a means of ensuring reproduction before drought-induced mortality. We therefore predicted that range edge populations would have greater capacity to self-pollinate in the absence of pollinators, and that this geographic pattern would be attributable to climate, in particular, drought stress during the flowering season (summer precipitation and temperature). We also sought to determine whether short-term drought relief produced consistent mating system responses across the range of \textit{C. pulchella}. We hypothesized that drought would induce a plastic increase in self-pollination, and that as a result we would see reduced reproductive assurance when drought relief was combined with pollinator limitation. Finally, we examined how variation in pollinator availability and climate affect different components of reproduction. We anticipated that drought relief would have opposing effects on reproductive assurance and fruit production: while drought may prompt plastic increases in reproductive assurance, higher water availability likely increases plant longevity and productivity during the flowering season.
+
+
+\section*{Methods}
+
+\subsection*{Study system}
+\textit{Clarkia pulchella} Pursh (Onagraceae) is a mixed-mating winter annual that grows east of the Cascade Mountains in the interior Pacific Northwest of North America (\autoref{map}). The species is found in populations ranging in size from hundreds to thousands of individuals on dry, open slopes in coniferous forest and sagebrush scrub. It is primarily outcrossed by solitary bees \citep{palladini2013indirect} with a diverse array of other pollinators \citep{macswain1973comparative}, but selfing can be facilitated by spatial and temporal proximity of fertile anthers and stigma within flowers. A large portion of the species' range is in the Okanagan Valley, which is expected to experience warmer temperatures and redistributed rainfall in the coming decades (\autoref{climate}). Temperature increases are expected to be especially prominent in the summer months \citep{wang2012climatewna, ipcc2014}. Anticipated changes in precipitation are variable and uncertain across the range of our focal species, with many sites expected to experience decreases in summer precipitation, but central sites projected to experience slight increases in annual precipitation \citep{wang2012climatewna, ipcc2014}.
+
+\subsection*{Plot establishment and monitoring}
+
+Experimental plots were established in eight populations on 4-9 June 2015. These sites were located in three regions across the latitudinal range of \textit{Clarkia pulchella}, with two at the species' northern edge in southern British Columbia (Canada), three in the range center in southeastern Washington (USA), and three in the southwest portion of the species range, in Oregon (USA; \autoref{map}, \autoref{siteinfo}). Our original intention was to treat the southern and western edges of the range separately and establish three sites at each edge. However, due to difficulty finding populations of sufficient size in sites where we could also obtain permits, we used just two populations in the west and one in the south. Because the climatic similarity among these sites is nearly comparable to that among sites in other regions (\autoref{climate}), we decided to treat them as a single region, the southwest. At each site, 5-8 blocks containing four plots each were marked with 6-inch steel nails, this resulted in a total of 50 blocks and 200 plots in the experiment. Each plot consisted of a 0.8 m\textsuperscript{2} area. Plots were intentionally placed with the goal of obtaining 5-20 individuals per plot, therefore the density in plots was typically higher than the overall site density. Plots were placed closer to other plots in their block than to those in other blocks (with exceptions in two circumstances where low plant density meant very few suitable plot locations were available). Blocks were placed to capture variation in microhabitat characteristics across the site, and their spacing varied depending on the population size and density. Each plot was randomly assigned to one of four factorial treatment groups: control, water addition, pollinator exclusion, or both water addition and pollinator exclusion. Plots receiving water additions were at least 0.5 m away from unwatered plots, except when they were downslope from unwatered plots, in which case they were sometimes closer. Plots receiving pollinator exclusion treatments were tented in bridal-veil mesh with bamboo stakes in each corner and nails tacking the mesh to the ground. Some pollinator exclusion plots had their nets partially removed by wind or cows during the flowering season (n = 13 out of 100 total tented plots), so all analyses were performed without these plots. 
+
+The majority of the summer precipitation in these sites falls in summer storms. Plots receiving supplemental water were watered 1-2 times during the summer (when plants were flowering) to simulate additional rainfall events. During each watering event, 15 mm of water was added to each plot (9.6 L per plot). This approximated the typical precipitation of a summer rainfall event based on data from \citet{wang2012climatewna}, and in an average year, would have increased the total summer precipitation in these plots by 30-70\%. However, our experiment was conducted during a drought year (\autoref{climate}), therefore, in the central sites, plots receiving water additions still fell short of average summer precipitation levels. In southwestern and northern sites, the water addition likely raised the summer precipitation amount slightly above the historic average. In all sites, we consider the water additions to represent a drought relief treatment, because unwatered plots were already experiencing natural drought. The first watering was performed when the experiment was set up. The second watering was performed 22-25 June 2015, except at two sites (SW3, C1), which had completed flowering and fruiting at that time. Efficacy of the water addition treatment was checked by measuring the soil water content with a probe (Hydrosense, Campbell Scientific Inc.) before and after water additions. Prior to water additions, there were no significant differences between plots receiving a water addition treatment and those not receiving this treatment (linear mixed effects model with a random effect of site and a fixed effect of water addition treatment; first watering: P = 0.839 (7 of 8 sites were measured); second watering: P = 0.277 (5 of 8 sites were measured)). Shortly after watering (within one hour), plots receiving a water addition treatment had higher soil moisture than those not receiving treatment (first watering: P $<$ 0.0001, average soil moisture of unwatered plots = 11.0\% , watered plots 22.2\%; second watering: P = 0.0001, average soil moisture of unwatered plots 3.7\%, watered plots 11.5\%).
+
+When flowering and fruiting were complete, we counted the number of plants in each plot and the number of fruits on each plant, and estimated the average number of seeds per fruit. The number of plants in each plot ranged from 1-43 (mean = 7.9, median = 7). We counted the number of fruits per plant on every plant in each plot, as a proxy for the number of flowers per plant (aborted fruits were rare overall). Plants that had died before producing any flowers were not included in our analyses. Some plants (n = 14, 0.7\% of all plants counted) had experienced major damage prior to our final census making fruit counting impossible, so they were assigned the average number of fruits per plant in that plot type at that site for estimation of plot-level seed input, but we excluded them from analyses of fruit counts. Other plants (n = 25, 1.4\% of all plants counted) still had flowers at the time of the final census. It was assumed that these flowers would ripen into fruits, so they were included in the fruit counts. When possible, up to four fruits per plot (average number of fruits per plot = 3.67) were collected for seed counting. After counting, seeds were returned to the plots that they were collected from by sprinkling them haphazardly over the plot from a 10 cm height. In 3 of 200 plots, no intact fruits were available for seed counting (all had dehisced), so these plots were excluded from analyses of seed set and plot-level seed input, but included in analyses of fruit counts. To assess the subsequent effects of pollinator limitation on populations in the following year, we revisited plots on 21-24 June and 29-31 July 2016 and counted the number of mature plants present in each. Some plot markers were missing, but we were able to relocate 182 of our 200 plots.
+
+\subsection*{Climate variable selection}
+
+We expect long-term climatic conditions, particularly those that might contribute to drought stress, to influence selection for autonomous selfing. Concurrent work with \textit{C. pulchella} (M. Bontrager, unpublished data) has indicated that fall, winter, and spring growing conditions play a large role in overall plant growth and reproductive output, therefore we considered not only flowering season (June-July) climate variables but also annual temperature and precipitation for inclusion as predictors. We obtained 50-year climate normals (1963-2012) from ClimateWNA \citep{wang2012climatewna} and climate data during the study from PRISM (PRISM Climate Group, Oregon State University, prism.oregonstate.edu, downloaded 10 October 2016). Our selected set of climatic variables included annual temperature normals (MAT), annual precipitation normals (MAP), summer temperature during the experiment, and summer precipitation during the experiment. Among these, MAT and precipitation during the experiment were correlated (r = -0.84). A full set of annual and seasonal variable correlations is presented in \autoref{climatecorrs}.
+
+\subsection*{Statistical analyses}
+
+We used generalized linear mixed effects models (GLMMs) to evaluate the effects of pollinator exclusion, region, and each of the selected climate variables on reproductive assurance and fruits per plant. Initial data exploration indicated that our watering treatment did not have a strong or consistent biological effect (\autoref{seedswater}, \autoref{fruitswater}), so we omitted this factor from our analyses to keep models simple and facilitate interpretation of interactions between the other factors. For each predictor variable of interest (the four climate variables and region), we built a model with a two-way interaction between this variable and pollinator exclusion on both seed counts and fruit counts. We used negative binomial GLMMs for both seeds and fruits, and we included a zero-inflation parameter when modeling seed counts. In all models we included random effects of blocks nested within sites. Because our data do not contain true zero fruit counts (i.e., we did not include plants that did not survive to produce fruits, so all plants in our dataset produced at least one fruit), we subtracted one from all counts of fruits per plant prior to analysis in order to better conform to the assumptions of the negative binomial model. All climate predictors were scaled prior to analyses by subtracting their mean and dividing by their standard deviation. We evaluated the relationship between total plot-level seed production in 2015 and the number of plants present in each plot in summer of 2016 using a GLMM with a negative binomial distribution and random effects of block nested within site. All models were built in R \citep{Rcore} using the package glmmTMB \citep{brooks2017glmmtmb} and predictions, averaged across random effects, were visualized using the package ggeffects \citep{ggeffects}.
+
+\section*{Results}
+
+\subsection*{Variation in response to pollinator limitation across the range}
+
+In all regions, \textit{Clarkia pulchella} produced fewer seeds in the absence of pollinators (\autoref{seedstable}). Climatic or geographic drivers of variation in reproductive assurance were indicated by our models of seeds per fruit when there was a significant interaction between pollinator exclusion and region or pollinator exclusion and a given climate variable. We found that reproductive assurance varied by region, with greater rates of reproductive assurance in northern populations (\autoref{seedsregion}, \autoref{seedstable}). We did not find any strong effects of climate on seed production or reproductive assurance (\autoref{seedstable}). However, there was a marginally significant interaction between mean annual precipitation (MAP) and pollinator exclusion: populations in historically wetter sites tended to be more negatively affected by pollinator exclusion (i.e.,\ populations in drier sites had slightly higher rates of reproductive assurance) (\autoref{seedstable}). This could be a causal relationship, or the correlation could have been driven by the high degree of reproductive assurance in the northern part of the range, which has low MAP. If low MAP was really a driver of reproductive assurance, we might expect to have seen a greater degree of reproductive assurance in the southwestern sites, which also have low MAP. However, this was not the case in our data. 
+
+\subsection*{Response of patch density to seed production in the previous year}
+
+Across sites, there was a positive relationship between the number of seeds produced in a plot in 2015 and the number of adult plants present in 2016 (\textit{P} $<$ 0.0001, $\beta = 0.00044$, SE $=0.000061$). This is not simply a result of plots with large numbers of plants in 2015 being similarly dense in 2016, because seed input was decoupled from plant density in 2015 by the pollinator exclusion treatments. The effect of seed input remained significant (\textit{P} $<$ 0.0001) when the number of plants in 2015 was included in the model as a covariate (results not shown). 
+
+\subsection*{Variation in fruit production across the range}
+
+Plants in the north produced more fruits (on average 4.0, compared to 1.5 and 1.7 in the center and southwest, respectively; \autoref{fruitstable}, \autoref{fruitsregion}). This regional trend could be due to the relatively lower normal annual temperatures in the northern sites (\autoref{climate}), the effects of which are discussed below. Pollinator exclusion tended to result in a slight increase in fruit production, possibly due to reallocation of resources within a plant in order to produce more flowers when ovules are left unfertilized (\autoref{fruitstable}). This effect was small---plants in plots without pollinators produced an additional 0.4 fruits, on average. 
+
+We found that the effects of pollinator exclusion on fruit production depended upon the amount of summer precipitation during the experiment (\autoref{fruitstable}, \autoref{fruitsclimate}). Fruit production was higher in wetter sites, and pollinator-excluded plants that were in the wettest sites showed a greater positive effect of pollinator exclusion on fruit production (\autoref{fruitstable}). However, it should be noted that while both the main effect of climate and its interaction with pollinator exclusion were significant, the difference between plots with and without pollinators in wetter sites did not appear to be particularly strong, and when visualized the confidence intervals were largely overlapping (\autoref{fruitsclimate}A). We also found a main effect of mean annual temperature (MAT) on fruit production (\autoref{fruitstable}). Fruit production was higher in cooler sites (\autoref{fruitsclimate}B). Disentangling these two climatic drivers of increased fruit production is not possible with this dataset, however, because summer precipitation during the experiment was negatively correlated with normal MAT. Therefore, it could have been either higher water resources during flowering or cooler temperatures over the growing season that resulted in increased fruit production. It is worth noting, however, that summer temperature during the experiment was not correlated with either of these variables, so if temperature was the driver of this pattern, it was likely because of temperature effects on earlier life-history stages. 
+
+\section*{Discussion}
+
+Pollinator exclusion in eight populations of \textit{Clarkia pulchella} revealed increased autonomous reproductive assurance in populations in the northern part of the species' range, as compared to the center or southwest. Plants in the northern part of the species' range also produced more fruits. Fruit production was higher in sites that are cooler or that received higher amounts of precipitation during the experiment. Plants also produced slightly more fruits in response to pollinator exclusion, however, this reallocation was not, in general, large enough to offset the reduction in seed production caused by pollen limitation.
+
+\subsection*{Reproductive assurance is driven by geography rather than climate}
+
+Pollinator limitation reduced reproduction across the range of \textit{C. pulchella}. Contrary to our prediction, we did not observe plastic responses of decreased reproductive assurance in response to our water addition treatment, or in sites with high summer precipitation during the experiment. There is some indication that plants in sites with lower average precipitation may have adapted to have greater reproductive assurance (\autoref{seedstable}), perhaps due to shorter season lengths or because gradients in pollinator abundance may be driven by water availability. However, increased reproductive assurance is only apparent at the northern range edge (\autoref{seedsregion}) despite the fact that mean annual precipitation is lower at both the northern and southwestern range edges. This trend persists even after accounting for regional differences in seed set in control plots, i.e.,\ when reproductive assurance is represented as a proportion of the average seed set in control plots (data not shown). In light of this, we suggest that for this species, reproductive assurance is better explained by the latitudinal position of populations relative to the range than by any single climate variable. The locations of our northern populations were covered by the Cordilleran ice sheet during the last glacial maximum; the patterns we see could be the result of a post-glacial range expansion, in which the founders of these northern populations were individuals who had a greater capacity for autonomous reproduction. It is possible that during colonization there is a low probability of pollinators foraging on a novel plant species and moving conspecific pollen between sparse individuals. Reproductive assurance has evolved in other species when populations have experienced historic bottlenecks \citep{busch2005evolution}, and contrasts of species' range sizes indicate that species capable of autonomous self-pollination have a greater ability to colonize new sites \citep{randle2009can}. While latitude is not a strong predictor of among-species variation in mating system \citep{moeller2017}, within-species variation may be more closely tied to postglacial colonization routes.
+
+An alternative possibility is that our northern sites are distinct because they differ in community composition from sites in other parts of the range. These community differences could be in the regional suite of pollinators. A survey of \textit{Clarkia} pollinators in western North America \citep{macswain1973comparative} notes that visitors to \textit{C. pulchella} differ from the characteristic groups that visit more southern members of the genus, and it is possible that a similar gradient in pollinator communities exists within the geographic range of \textit{C. pulchella}. Similarly, co-occurring plant species can influence pollinator availability and deposition of conspecific pollen on a focal species \citep{palladini2013indirect}, and it is possible that populations in the northern portion of the range have adapted to a different pollination environment caused by overlap with different plant species.
+
+Across the range, adult plant density was positively correlated with seed production in the previous year. Because our pollinator exclusion treatment led to plot-level seed input being decoupled from the number of plants in 2015 (data not shown), we can attribute differences in 2016 plant density to seed input, rather than to patch quality. Seed production is important enough to have an effect on subsequent density despite differences between plots in the availability of germination sites or the probability of survival to flowering. This, in combination with the consistent negative reproductive response to pollinator exclusion, indicates that populations would likely be negatively impacted by disruption of pollinator service. 
+
+\subsection*{Reallocation to flower and fruit production under pollen limitation}
+
+Either cool temperatures during the growing season, high summer precipitation, or a combination of the two increase overall fruit production. Germination of \textit{C. pulchella} is inhibited under warm temperatures \citep{lewis1955genus}, so plants in sites with cooler fall temperatures could have earlier germination timing and develop larger root systems, giving them access to more resources during the flowering season. \textit{Clarkia pulchella} individuals appear to be capable of reallocating some resources to flower production when pollen is limited (\autoref{fruitstable}). Our finding of a modest amount of reallocation under pollinator exclusion contrasts with work in another \textit{Clarkia} species, \textit{C. xantiana} ssp.\ \textit{parviflora}, which found that individuals do not reallocate resources based on the quantity of pollen received \citep{runquist2013resource}. These contrasting results can potentially be explained by two factors. First, the focal species of our study produces buds continuously over the flowering season, while \textit{C. xantiana} ssp. \textit{parviflora} produces nearly all of its buds at the beginning of the flowering season, leaving individuals little opportunity to respond to the pollination environment \citep{runquist2013resource}. Second, their study investigated differences between plants under natural pollination conditions and plants receiving supplemental pollen, while we compared plants under natural pollination and plants under strong pollen limitation. These differences in direction and magnitude of the treatments imposed may affect the degree to which a plant reallocation response can be detected. An alternative explanation for the apparent resource reallocation is that our pollinator exclusion tents protected plants from herbivores that might have removed fruits in the control plots. While herbivory of individual fruits (rather than entire plants) appears rare (M. Bontrager, personal observation), we can not rule out the possibility of an herbivore effect.
+
+\subsection*{Implications for responses to climate change}
+If we assume that the correlations we found between traits and climate across sites can be generally extrapolated to future climates and future responses, our results would suggest that the projected temperature increases in coming decades (\autoref{climate}) will have negative effects on reproduction via negative effects on fruit set (\autoref{fruitsclimate}B). However, it is important to be cautious about inferring future responses from current spatial patterns \citep{warren2014}. Common garden experiments in the field and growth chamber \citep[M. Bontrager, unpublished data;][]{gamble2018floral} indicate that populations of \textit{C. pulchella} are differentiated based on climate of origin, therefore population responses to changes in climate are likely to be individualized and will depend not only on a population's current climate optimum, but also its capacity for adaptive and plastic responses.
+
+\subsection*{Conclusions and future directions}
+Populations of \textit{Clarkia pulchella} from across the species' range are reliant on pollinator service to maintain high levels of seed production, which is likely an important demographic transition for this species. Our data support the hypothesis that population in areas of the range that have undergone post-glacial expansion may have elevated levels of reproductive assurance, but alternative drivers of this pattern remain plausible. Future work should explore these drivers, and could begin by examining geographic variation in the phenology, abundance, and composition of pollinator communities, as well as the responses of these communities to changes in climatic conditions. In order to better understand how \textit{C. pulchella} might respond to changes in pollinator service, future work should measure the capacity of populations to evolve higher rates of self-pollination in the absence of pollinators. 
+
+\section*{Acknowledgements}
+We would like to thank B. Harrower, R. Germain, and members of the Angert lab for their thoughtful comments on this project. E. Fitz assisted with fieldwork. Permission to work in our field sites was granted by British Columbia Parks, Umatilla National Forest, Ochoco National Forest, and the Vale District Bureau of Land Management. MB was supported by a University of British Columbia Four-year Fellowship.
+
+\section*{Data accessibility}
+Data and code are currently hosted on... Upon publication, all data and code will be archived on Dryad.
+
+\section*{Conflict of interest} 
+The authors declare that they have no conflict of interest.
+
+\bibliography{biblio}
+
+
+\clearpage
+
+
+\begin{landscape}
+\begin{table}[p]
+\centering
+\caption[Effects of pollinator exclusion, region, and climate on seed set per fruit.]{Effects of pollinator exclusion, region, and climate on seed set per fruit. Estimates, standard errors, and \textit{P}-values are from zero-inflated negative binomial GLMMs. Effects of being in the northern or southwestern region are expressed relative to central populations. Significant main effects and interactions are indicated with bold font.}
+\label{seedstable}
+\begin{tabular}{llrrrrrrrrr}
+\toprule
+                            &                     &  & &                        &  &  &   & \multicolumn{3}{l}{Climate/region x}           \\
+\multicolumn{2}{l}{Climate/region predictor}          & \multicolumn{3}{l}{Climate/region} &    \multicolumn{3}{l}{Pollinator exclusion}                               & \multicolumn{3}{l}{pollinator exclusion} \\
+                            &                     & \multicolumn{1}{l}{$\beta$} & \multicolumn{1}{l}{SE} & \multicolumn{1}{l}{\textit{P}-value} &  \multicolumn{1}{l}{$\beta$}  & \multicolumn{1}{l}{SE} &  \multicolumn{1}{l}{\textit{P}-value} &  \multicolumn{1}{l}{$\beta$}  & \multicolumn{1}{l}{SE} &  \multicolumn{1}{l}{\textit{P}-value} \\
+\midrule
+\multirow{2}{*}{Region}     & North               & 0.219    & 0.155    & 0.157       & \multirow{2}{*}{\textbf{-0.987}} & \multirow{2}{*}{\textbf{0.112}} & \multirow{2}{*}{\textbf{$<$ 0.001}} & \textbf{0.371} & \textbf{0.159} & \textbf{0.020} \\
+                            & Southwest           & -0.217   & 0.139    & 0.119       &        &       &                         & 0.098        & 0.153      & 0.523        \\
+\midrule
+\multicolumn{2}{l}{Mean annual precipitation}     & 0.046    & 0.098    & 0.635       & \textbf{-0.834} & \textbf{0.066} & \textbf{$<$ 0.001}               & -0.111       & 0.064      & 0.086        \\
+\multicolumn{2}{l}{Mean annual temperature}       & -0.084   & 0.090    & 0.348       & \textbf{-0.827} & \textbf{0.066} & \textbf{$<$ 0.001}               & -0.038       & 0.062      & 0.541        \\
+\multicolumn{2}{l}{Summer precipitation (2015)}   & 0.031    & 0.096    & 0.747       & \textbf{-0.825} & \textbf{0.066} & \textbf{$<$ 0.001}               & -0.019       & 0.063      & 0.763        \\
+\multicolumn{2}{l}{Summer temperature (2015)}     & 0.037    & 0.093    & 0.688       & \textbf{-0.840} & \textbf{0.067} & \textbf{$<$ 0.001}               & 0.105        & 0.065      & 0.105        \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\clearpage
+
+
+\begin{table}[p]
+\centering
+\caption[Effects of pollinator exclusion, region, and climate on fruit number.]{Effects of pollinator exclusion, region, and climate on fruit number. Estimates, standard errors, and \textit{P}-values are from negative binomial GLMMs. Effects of being in the northern or southwestern region are expressed relative to central populations. Significant main effects and interactions are indicated with bold font.}
+\label{fruitstable}
+\begin{tabular}{llrrrrrrrrr}
+\toprule
+                            &                     &  & &                        &  &  &   & \multicolumn{3}{l}{Climate/region x}           \\
+\multicolumn{2}{l}{Climate/region predictor}                    & \multicolumn{3}{l}{Climate/region} &    \multicolumn{3}{l}{Pollinator exclusion}                               & \multicolumn{3}{l}{pollinator exclusion} \\
+                            &                     & \multicolumn{1}{l}{$\beta$} & \multicolumn{1}{l}{SE} & \multicolumn{1}{l}{\textit{P}-value} &  \multicolumn{1}{l}{$\beta$}  & \multicolumn{1}{l}{SE} &  \multicolumn{1}{l}{\textit{P}-value} &  \multicolumn{1}{l}{$\beta$}  & \multicolumn{1}{l}{SE} &  \multicolumn{1}{l}{\textit{P}-value} \\
+\midrule
+\multirow{2}{*}{Region}     & North               & \textbf{1.156}   & \textbf{0.442}  & \textbf{0.009} & \multirow{2}{*}{\textbf{0.302}} & \multirow{2}{*}{\textbf{0.096}} & \multirow{2}{*}{\textbf{0.002}} & -0.272 & 0.146 & 0.063 \\
+                            & Southwest           & 0.001   & 0.399  & 0.997 &        &       &       & -0.153 & 0.151  & 0.309  \\
+\midrule
+\multicolumn{2}{l}{Mean annual precipitation}     & -0.126  & 0.236  & 0.594 & \textbf{0.178}  & \textbf{0.062} & \textbf{0.004} & 0.020  & 0.064  & 0.752  \\
+\multicolumn{2}{l}{Mean annual temperature}       & \textbf{-0.454}  & \textbf{0.148}  & \textbf{0.002} & \textbf{0.154}  & \textbf{0.063} & \textbf{0.014} & -0.118 & 0.066  & 0.072  \\
+\multicolumn{2}{l}{Summer precipitation (2015)}   & 0.281   & 0.206  & 0.172 & \textbf{0.148}  & \textbf{0.062} & \textbf{0.017} & \textbf{0.211}  & \textbf{0.068}  & \textbf{0.002}  \\
+\multicolumn{2}{l}{Summer temperature (2015)}     & -0.253  & 0.201  & 0.209 & \textbf{0.174}  & \textbf{0.062} & \textbf{0.005} & -0.033 & 0.066  & 0.617  \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\end{landscape}
+
+
+\clearpage
+
+
+\begin{figure}[p]
+\centering
+\includegraphics[width = 0.6\textwidth]{figs/map}
+\caption[Experimental sites relative to the geographic range of \textit{Clarkia pulchella}]{Experimental sites relative to the geographic range of \textit{Clarkia pulchella} (shaded area). N1 and N2 are northern sites; S1, S2, and S3 are southwestern sites, and C1, C2, and C3 are central sites. For geographic coordinates and elevations, see \autoref{siteinfo}.}
+\label{map}
+\end{figure}
+
+
+\clearpage
+
+
+\begin{figure}[p]
+\centering
+\includegraphics[width = 0.48\textwidth]{figs/climate}
+\caption[Climate conditions in experimental sites in each region]{Climate conditions in experimental sites in each region. Boxplots summarize annual values over a 50-year time window (1963-2012). Triangles represent conditions during the experiment. Also shown are climate projections for 2055 under two different emissions scenarios (circles: CanESM RCP 4.5; squares: CanESM RCP 8.5). Historic and future values extracted from ClimateWNA \citep{wang2012climatewna}, weather during the experiment was downloaded from PRISM (PRISM Climate Group, Oregon State University, prism.oregonstate.edu).}
+\label{climate}
+\end{figure}
+
+
+\clearpage
+
+
+\begin{figure}[p]
+\centering
+\includegraphics[width = 0.5\textwidth]{figs/seeds_region}
+\caption[Seed set in plots with and without pollinators by region]{Seeds per fruit in plots with and without pollinators in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data.}
+\label{seedsregion}
+\end{figure}
+
+
+\clearpage
+
+
+\begin{figure}[p]
+\centering
+\includegraphics[width = 0.5\textwidth]{figs/fruits_region}
+\caption[Fruits per plant in plots with and without pollinators by region]{Fruits per plant in plots with and without pollinators in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data.}
+\label{fruitsregion}
+\end{figure}
+
+
+\clearpage
+
+
+\begin{figure}[p]
+\centering
+\includegraphics[width = \textwidth]{figs/fruit_climate}
+\caption[Effects of climate and pollinator exclusion on per-plant fruit production]{\textbf{(A)} Effects of summer precipitation during the experiment (2015) and pollinator exclusion on per-plant fruit production. \textbf{(B)} Effects of mean annual temperature (1963-2012) and pollinator exclusion on per-plant fruit production. Average per-plant fruit counts in plots with and without pollinators are also plotted. Lines represent model predictions; shaded areas represent 95\% confidence intervals. Each pair of stacked dots represent raw means of plants with (black) and without pollinators (grey) in a site.}
+\label{fruitsclimate}
+\end{figure}
+
+
+\beginsupplement
+
+
+\clearpage
+
+\begin{table}[p]
+\centering
+\captionsetup{singlelinecheck = false, justification=justified}
+\caption[Geographic data for experimental sites]{Geographic data for experimental sites. Coordinates are given in decimal degrees. Abbreviations match \autoref{map}.}
+\begin{tabular}{lllrrr}
+\toprule
+Name        & Abbreviation & Latitude & Longitude & Elevation (m) \\
+\midrule
+Southwest 1 & SW1         & 44.47   & -120.71  & 1128          \\ % McKay Creek
+Southwest 2 & SW2         & 44.38   & -120.52  & 1134          \\ % Highway 26
+Southwest 3 & SW3         & 43.30   & -117.27  & 1043          \\ % Leslie Gulch
+Center 1    & C1          & 46.24   & -117.74  & 1022          \\ % Tucannon
+Center 2    & C2          & 46.28   & -117.60  & 1457          \\ % Abel's Ridge
+Center 3    & C3          & 46.24   & -117.49  & 1445          \\ % Government Trail Ridge
+North 1     & N1          & 49.05    & -119.56   & 842         \\ % Blue Lake
+North 2     & N2          & 49.04    & -119.05   & 866         \\ % Rock Creek
+\bottomrule
+\end{tabular}
+\label{siteinfo}
+\end{table}
+
+
+\clearpage
+
+
+\begin{landscape}
+\renewcommand{\arraystretch}{0.67}
+\begin{longtable}[p]{lcccccccccc}
+% \centering
+\caption[Correlation among climate variables from pollinator exclusion sites]{Pearson correlation coefficients among precipitation and temperature variables associated with experimental sites. For \textbf{(A)} precipitation, \textbf{(B)} temperature, and \textbf{(C)} precipitation and temperature, correlations are shown between annual, fall (September-November), winter (December-February), spring (March-May), and summer (June-July, because all plants senesce before August). Normal values were calculated over 50 years (1963-2012), while 2014-2015 values are from the growing season of plants in the experiment. Normal climate data is from ClimateWNA \citep{wang2012climatewna} and 2014-2015 variables are from PRISM (PRISM Climate Group, Oregon State University, prism.oregonstate.edu). Variables used in models and their correlations are indicated in bold text.} \\
+\label{climatecorrs} \\
+\endfirsthead
+\toprule
+A. Temperature           &          &            &              &              &              &             &            &              &              & \\
+\midrule
+                         & \textbf{MAT}      & Fall & Winter & Spring & Summer & MAT         & Fall  & Winter  & Spring  & \\
+                         & \textbf{(normal)}     & temp.\ & temp.\ & temp.\ & temp.\ & (2014-15)         & temp.\ & temp.\ & temp.\ & \\
+                         &  & (normal)   & (normal)     & (normal)     & (normal)     &  & (2014)     & (2014-15)  & (2015)       & \\
+Fall temp.\ (normal)      & 0.97     &            &              &              &              &             &            &              &              & \\
+Winter temp.\ (normal)    & 0.69     & 0.83       &              &              &              &             &            &              &              & \\
+Spring temp.\ (normal)    & 0.86     & 0.73       & 0.23         &              &              &             &            &              &              & \\
+Summer temp.\ (normal)    & 0.72     & 0.54       & 0.01         & 0.94         &              &             &            &              &              & \\
+MAT (2014-2015)          & 0.71     & 0.68       & 0.62         & 0.44         & 0.48         &             &            &              &              & \\
+Fall temp.\ (2014)        & 0.70     & 0.75       & 0.82         & 0.30         & 0.26         & 0.95        &            &              &              & \\
+Winter temp.\ (2014-2015) & 0.60     & 0.74       & 0.95         & 0.11         & -0.04        & 0.71        & 0.90       &              &              & \\
+Spring temp.\ (2015)      & 0.28     & 0.05       & -0.38        & 0.57         & 0.78         & 0.40        & 0.08       & -0.35        &              & \\
+\textbf{Summer temp.\ (2015)}      & \textbf{0.25}     & 0.05       & -0.24        & 0.40         & 0.65         & 0.59        & 0.30       & -0.14        & 0.93         & \\
+\midrule
+B. Precipitation            &          &              &                &                &                &             &              &                &                & \\
+\midrule
+                            & \textbf{MAP}      & Fall  & Winter  & Spring  & Summer  & MAP         & Fall & Winter & Spring & \\
+                            & \textbf{(normal)}     & precip.\ & precip.\ & precip.\ & precip.\ & (2014-15)         & precip.\ & precip.\ & precip.\ & \\
+                            &  & (normal)     & (normal)       & (normal)       & (normal)       &  & (2014)       & (2014-15)    & (2015)         \\
+Fall  precip.\ (normal)     & 1.00     &              &                &                &                &             &              &                &                & \\
+Winter precip.\ (normal)    & 1.00     & 1.00         &                &                &                &             &              &                &                & \\
+Spring precip.\ (normal)    & 0.99     & 0.99         & 0.98           &                &                &             &              &                &                & \\
+Summer precip.\ (normal)    & 0.92     & 0.88         & 0.88           & 0.89           &                &             &              &                &                & \\
+MAP (2014-2015)             & 0.99     & 0.99         & 0.99           & 0.98           & 0.88           &             &              &                &                & \\
+Fall precip.\ (2014)        & 0.98     & 0.98         & 0.98           & 0.97           & 0.87           & 0.98        &              &                &                & \\
+Winter precip.\ (2014-2015) & 0.98     & 0.98         & 0.98           & 0.98           & 0.86           & 1.00        & 0.98         &                &                & \\
+Spring precip.\ (2015)      & 0.96     & 0.97         & 0.96           & 0.98           & 0.82           & 0.98        & 0.95         & 0.99           &                & \\
+\textbf{Summer precip.\ (2015)}      & \textbf{0.13}     & 0.10         & 0.11           & 0.05           & 0.38           & 0.11        & 0.04         & 0.09           & 0.01          &  \\     
+\hline
+\multicolumn{2}{l}{C. Precipitation and temperature}    &              &                &                &                &             &              &                &                \\
+\midrule
+                  & \textbf{MAT} & Fall & Winter  & Spring & Summer & MAT & Fall  & Winter & Spring & \textbf{Summer} \\
+                  &\textbf{(normal)}  &  temp.\ &  temp.\ &  temp.\ &  temp.\ & (2014-15) &  temp.\ &  temp.\ &  temp.\ & \textbf{ temp.} \\
+                  &             & (normal)   & (normal)     & (normal)     & (normal)     &  & (2014) & (2014-15) & (2015) & \textbf{(2015)} \\
+\textbf{MAP (normal)}          & \textbf{0.20}  & 0.30      & 0.47      & -0.05     & -0.19     & 0.23    & 0.31     & 0.37     & -0.18    & \textbf{-0.08}    \\
+Fall precip.\ (normal)          & 0.23           & 0.34      & 0.53      & -0.05     & -0.21     & 0.22    & 0.33     & 0.41     & -0.24    & -0.14    \\
+Winter precip.\ (normal)        & 0.22           & 0.33      & 0.53      & -0.06     & -0.22     & 0.22    & 0.33     & 0.42     & -0.25    & -0.15    \\
+Spring precip.\ (normal)        & 0.30           & 0.37      & 0.52      & 0.03      & -0.10     & 0.34    & 0.41     & 0.42     & -0.09    & 0.03     \\
+Summer precip.\ (normal)        & -0.08          & -0.04     & 0.09      & -0.17     & -0.21     & 0.04    & 0.03     & 0.01     & 0.01     & 0.09     \\
+MAP (2014-2015)                & 0.25           & 0.34      & 0.51      & -0.02     & -0.16     & 0.28    & 0.37     & 0.43     & -0.19    & -0.07    \\
+Fall precip.\ (2014)            & 0.28           & 0.37      & 0.50      & 0.04      & -0.13     & 0.21    & 0.30     & 0.38     & -0.18    & -0.12    \\
+Winter precip.\ (2014-2015)     & 0.28           & 0.37      & 0.53      & 0.00      & -0.14     & 0.31    & 0.40     & 0.46     & -0.18    & -0.06    \\
+Spring precip.\ (2015)          & 0.34           & 0.43      & 0.61      & 0.02      & -0.12     & 0.40    & 0.49     & 0.53     & -0.17    & -0.02    \\
+\textbf{Summer precip.\ (2015)} & \textbf{-0.84} & -0.80     & -0.51     & -0.79     & -0.67     & -0.50   & -0.48    & -0.39    & -0.28    & \textbf{-0.17}   \\
+\bottomrule
+\end{longtable}
+\end{landscape}
+
+
+\clearpage
+
+\begin{figure}[p]
+\centering
+\includegraphics[width = \textwidth]{figs/seeds_water.pdf}
+\caption{Seeds per fruit in plots with factorial pollinator exclusion and water addition treatments in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data. Despite a statistically significant interaction between pollinators and water addition (analyses not shown), the biological effect of watering on seed set appears negligible.}
+\label{seedswater}
+\end{figure}
+
+
+\clearpage
+
+
+\begin{figure}[p]
+\centering
+\includegraphics[width = \textwidth]{figs/fruits_water.pdf}
+\caption{Fruits per plant in plots with factorial pollinator exclusion and water addition treatments in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data. Despite statistically significant interactions between pollinators and water addition, as well as between region and water addition (analyses not shown), the biological effect of watering on fruit number appears negligible.}
+\label{fruitswater}
+\end{figure}
+
+
+\end{document}

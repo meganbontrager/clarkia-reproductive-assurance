@@ -1,0 +1,10 @@
+,MAP (normal),Fall precip. (normal),Winter precip. (normal),Spring precip. (normal),Summer precip. (normal),MAP (2014-2015),Fall precip. (2014),Winter precip. (2014-2015),Spring precip. (2015)
+Fall  precip. (normal),1.00,,,,,,,,
+Winter precip. (normal),1.00,1.00,,,,,,,
+Spring precip. (normal),0.99,0.99,0.98,,,,,,
+Summer precip. (normal),0.92,0.88,0.88,0.89,,,,,
+MAP (2014-2015),0.99,0.99,0.99,0.98,0.88,,,,
+Fall precip. (2014),0.98,0.98,0.98,0.97,0.87,0.98,,,
+Winter precip. (2014-2015),0.98,0.98,0.98,0.98,0.86,1.00,0.98,,
+Spring precip. (2015),0.96,0.97,0.96,0.98,0.82,0.98,0.95,0.99,
+Summer precip. (2015),0.13,0.10,0.11,0.05,0.38,0.11,0.04,0.09,0.01
