@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  18 JUL 2018 18:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  18 JUL 2018 20:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -751,6 +751,11 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12]
+Overfull \hbox (6.37096pt too wide) in paragraph at lines 162--163
+\OT1/cmr/m/n/10 Data and code are avail-able on Github at https://github.com/me
+ganbontrager/clarkia-reproductive-assurance.
+ []
+
 (./clarkia-reproductive-assurance.bbl (./clarkia-reproductive-assurance.brf)
 \tf@brf=\write4
 \openout4 = `clarkia-reproductive-assurance.brf'.
@@ -841,7 +846,7 @@ Here is how much of TeX's memory you used:
  21137 multiletter control sequences out of 15000+600000
  11409 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,11n,53p,10381b,894s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,11n,53p,10381b,892s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
@@ -853,7 +858,7 @@ l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/t
 exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/tex
 live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texl
 ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on clarkia-reproductive-assurance.pdf (28 pages, 265785 bytes).
+Output written on clarkia-reproductive-assurance.pdf (28 pages, 265873 bytes).
 PDF statistics:
  498 PDF objects out of 1000 (max. 8388607)
  438 compressed objects within 5 object streams
