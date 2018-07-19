@@ -1,92 +1,98 @@
 metadata for fruits.csv
 
-region
-site
-block
-plot
-net
-water
-fruits
-buds_notincl
-flowers_incl
-damage
-blocksite
-MAT_hist
-MAP_hist
-Tsum_exp
-PPT_sm_exp
+each row = 1 plant
+
+region        the region: center, north, or southwest
+site          the name of the site that plant was in
+block         the block that plant was in 
+plot          the treatment plot that plant was in (C = control, P = pollinator exclusion, W = water addition, PW = both pollinators excluded and water added)
+net           if "yes", pollinators were excluded from that plant's plot
+water         if "yes", that plant's plot got water added
+fruits        number of fruits
+buds_notincl  number of buds on that plant (not included in fruit count)
+flowers_incl  number of flower on that plant (included in fruit count)
+damage        was that plant damaged by herbivores?
+blocksite     block and site concatenated
+MAT_hist      mean annual temperature in that site from ClimateWNA (degrees C)
+MAP_hist      mean annual precipitation in that site from ClimateWNA (mm)
+Tsum_exp      temperature during the summer of the experiment (June-July 2015, degrees C)
+PPT_sm_exp    precipitation during the summer of the experiment (June-July 2015, mm)
 
 
 metadata for seeds.csv
 
-region
-site
-block
-plot
-water
-net
-fruit
-seeds
-exclude_seeds_estimated
-blocksite
-MAT_hist
-MAP_hist
-Tsum_exp
-PPT_sm_exp
+each row = 1 fruit
+
+region                    the region: center, north, or southwest
+site                      the name of the site
+block                     the block that fruit was collected from
+plot                      the treatment plot that fruit was collected from (C = control, P = pollinator exclusion, W = water addition, PW = both pollinators excluded and water added)
+water                     if "yes", that fruit was collected from a plot with water added
+net                       if "yes", that fruit was collected from a plot with pollinators excluded
+fruit                     replicate fruit number from that plot (just to keep track of envelopes)
+seeds                     seed count 
+exclude_seeds_estimated   if "yes" seeds were not counted precisely
+blocksite                 block and site concatenated
+MAT_hist                  mean annual temperature in that site from ClimateWNA (degrees C, 1963-2012)
+MAP_hist                  mean annual precipitation in that site from ClimateWNA (mm, 1963-2012)
+Tsum_exp                  temperature during the summer of the experiment (June-July 2015, degrees C)
+PPT_sm_exp                precipitation during the summer of the experiment (June-July 2015, mm)
 
 
 metadata for seeds_per_plot.csv
 
-region
-site
-block
-plot
-net
-water
-plantcount_2015
-plantcount_2016_total
-plantcount_2016_inner
-total
-blocksite
+each row = 1 plot
+
+region                  the region: center, north, or southwest
+site                    the name of the site
+block                   the block within site
+plot                    the treatment group of that plot (C = control, P = pollinator exclusion, W = water addition, PW = both pollinators excluded and water added)
+net                     if "yes" that plot had pollinators excluded
+water                   if "yes" that plot had water added
+plantcount_2015         number of plants in that plot in 2015
+plantcount_2016_total   number of plants in that plot in 2016
+plantcount_2016_inner   number of plants in the interior of the plot in 2016
+total                   total estimated seed input into that plot (average seeds/fruit * total number of fruits)
+blocksite               block and site concatenated
 
 
 metadata for all_clim.csv
 
-region
-site
-name
-abbreviation
-lat
-long
-elev
-MAT_hist
-Tfal_hist
-Twin_hist
-Tspr_hist
-Tsum_hist
-MAP_hist
-PPT_at_hist
-PPT_wt_hist
-PPT_sp_hist
-PPT_sm_hist
-MAT_exp
-Tfal_exp
-Twin_exp
-Tspr_exp
-Tsum_exp
-MAP_exp
-PPT_at_exp
-PPT_wt_exp
-PPT_sp_exp
-PPT_sm_exp
-MAT_future205545
-MAP_future205545
-Tsum_future205545
-Psum_future205545
-MAT_future205585
-MAP_future205585
-Tsum_future205585
-Psum_future205585
+region                  the region: center, north, or southwest
+site                    the name of the site
+name                    the site name used in the paper
+abbreviation            the abbreviation used in the paper
+lat                     site latitude in decimal degrees
+long                    site longitude in decimal degrees
+elev                    site elevation in m
+MAT_hist                mean annual temperature in that site from ClimateWNA (degrees C, 1963-2012)
+Tfal_hist               fall (Sept-Nov) temperature in that site from ClimateWNA (degrees C, 1963-2012)
+Twin_hist               winter (Dec-Feb) temperature in that site from ClimateWNA (degrees C, 1963-2012)
+Tspr_hist               spring (Mar-May) temperature in that site from ClimateWNA (degrees C, 1963-2012)
+Tsum_hist               summer (June-July) temperature in that site from ClimateWNA (degrees C, 1963-2012)
+MAP_hist                mean annual precipitation in that site from ClimateWNA (mm, 1963-2012)
+PPT_at_hist             fall (Sept-Nov) precipitation in that site from ClimateWNA (mm, 1963-2012)
+PPT_wt_hist             winter (Dec-Feb) precipitation in that site from ClimateWNA (mm, 1963-2012)
+PPT_sp_hist             spring (Mar-May) precipitation in that site from ClimateWNA (mm, 1963-2012)
+PPT_sm_hist             summer (Jun-Jul) precipitation in that site from ClimateWNA (mm, 1963-2012)
+MAT_exp                 mean annual temperature during the experiment from PRISM (degrees C)
+Tfal_exp                fall temperature during the experiment from PRISM (degrees C)
+Twin_exp                winter temperature during the experiment from PRISM (degrees C)
+Tspr_exp                spring temperature during the experiment from PRISM (degrees C)
+Tsum_exp                summer temperature during the experiment from PRISM (degrees C)
+MAP_exp                 mean annual precipitation during the experiment from PRISM (mm)
+PPT_at_exp              fall precipitation during the experiment from PRISM (mm)
+PPT_wt_exp              winter precipitation during the experiment from PRISM (mm)
+PPT_sp_exp              spring precipitation during the experiment from PRISM (mm)
+PPT_sm_exp              summer precipitation during the experiment from PRISM (mm)
+MAT_future205545        future projected MAT, emissions scenario RCP4.5, from ClimateWNA (degrees C)
+MAP_future205545        future projected MAP, emissions scenario RCP4.5, from ClimateWNA (degrees C)
+Tsum_future205545       future projected summer temperature, emissions scenario RCP4.5, from ClimateWNA (degrees C)
+Psum_future205545       future projected summer precipitation, emissions scenario RCP4.5, from ClimateWNA (degrees C)
+MAT_future205585        future projected MAT, emissions scenario RCP8.5, from ClimateWNA (degrees C)
+MAP_future205585        future projected MAP, emissions scenario RCP8.5, from ClimateWNA (degrees C)
+Tsum_future205585       future projected summer temperature, emissions scenario RCP8.5, from ClimateWNA (degrees C)
+Psum_future205585       future projected summer precipitation, emissions scenario RCP8.5, from ClimateWNA (degrees C)
 
 
 
