@@ -144,10 +144,10 @@ ggplot() +
   geom_boxplot(data = fruit_data, aes(y = fruits, x = region_ordered, fill = trtlabel), outlier.size = 0.7) +
   # model predicted means
   geom_point(data = pred_fruit_wat, aes(y = predicted, x = region_ordered, group = trtlabel), size = 2, 
-             position = position_dodge(width = 0.8)) +
+             position = position_dodge(width = 0.75)) +
   # confidence intervals
   geom_errorbar(data = pred_fruit_wat, aes(ymin = conf.low, ymax = conf.high, x = region_ordered, group = trtlabel), size = 0.9, 
-                position = position_dodge(width = 0.8), width = 0.2) +
+                position = position_dodge(width = 0.75), width = 0.2) +
   # raw means
   stat_summary(data = fruit_data, aes(y = fruits, x = as.numeric(region_ordered) + 0.05, group = trtlabel), geom = "point", fun.data = "mean_se", 
                position = position_dodge(width = 0.75), shape = 2, color = "black") +
