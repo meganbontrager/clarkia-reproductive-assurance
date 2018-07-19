@@ -20,7 +20,7 @@ Baker, H.~G. (1955).
 Bjerknes, A.-L., {\O}.~Totland, S.~J. Hegland, and A.~Nielsen (2007).
 \newblock Do alien plant invasions really affect pollination success in native
   plant species?
-\newblock {\em Biological conservation\/}~{\em 138\/}(1), 1--12.
+\newblock {\em Biological Conservation\/}~{\em 138\/}(1), 1--12.
 
 \bibitem[\protect\citeauthoryear{Bodbyl~Roels and Kelly}{Bodbyl~Roels and
   Kelly}{2011}]{bodbyl2011rapid}
@@ -58,7 +58,7 @@ Brooks, M.~E., K.~Kristensen, K.~J. van Benthem, A.~Magnusson, C.~W. Berg,
 Bruckman, D. and D.~R. Campbell (2016).
 \newblock Pollination of a native plant changes with distance and density of
   invasive plants in a simulated biological invasion.
-\newblock {\em American journal of botany\/}~{\em 103\/}(8), 1458--1465.
+\newblock {\em American Journal of Botany\/}~{\em 103\/}(8), 1458--1465.
 
 \bibitem[\protect\citeauthoryear{Burd}{Burd}{1994}]{burd1994principle}
 Burd, M. (1994).
@@ -114,8 +114,8 @@ Galen, C., R.~A. Sherry, and A.~B. Carroll (1999).
   et~al.}{2018}]{gamble2018floral}
 Gamble, D.~E., M.~Bontrager, and A.~L. Angert (2018).
 \newblock Floral trait variation and links to climate in the mixed-mating
-  annual clarkia pulchella.
-\newblock {\em Botany\/}~(ja).
+  annual \textit{{C}larkia pulchella}.
+\newblock {\em Botany\/}~{\em 96\/}(7), 425--435.
 
 \bibitem[\protect\citeauthoryear{Herlihy and Eckert}{Herlihy and
   Eckert}{2005}]{herlihy2005evolution}
@@ -296,6 +296,7 @@ Williams, P.~H., M.~B. Ara{\'u}jo, and P.~Rasmont (2007).
   et~al.}{2013}]{wright2013evolutionary}
 Wright, S.~I., S.~Kalisz, and T.~Slotte (2013).
 \newblock Evolutionary consequences of self-fertilization in plants.
-\newblock {\em Proc. R. Soc. B\/}~{\em 280\/}(1760), 20130133.
+\newblock {\em Proceedings of the Royal Society of London B: Biological
+  Sciences\/}~{\em 280\/}(1760), 20130133.
 
 \end{thebibliography}
