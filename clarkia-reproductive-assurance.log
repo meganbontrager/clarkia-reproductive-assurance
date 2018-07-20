@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  19 JUL 2018 10:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.5.23)  20 JUL 2018 07:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -622,20 +622,20 @@ LaTeX Info: Redefining \\ on input line 3056.
 (./clarkia-reproductive-assurance.aux)
 \openout1 = `clarkia-reproductive-assurance.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 56.
-LaTeX Font Info:    ... okay on input line 56.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/beamer/translator/dicts/translato
 r-basic-dictionary/translator-basic-dictionary-English.dict
@@ -713,7 +713,7 @@ Package caption Info: End \AtBeginDocument code.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box55
-Package hyperref Info: Link coloring OFF on input line 56.
+Package hyperref Info: Link coloring OFF on input line 58.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
@@ -722,9 +722,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count194
 )
-LaTeX Info: Redefining \ref on input line 56.
-LaTeX Info: Redefining \pageref on input line 56.
-LaTeX Info: Redefining \nameref on input line 56.
+LaTeX Info: Redefining \ref on input line 58.
+LaTeX Info: Redefining \pageref on input line 58.
+LaTeX Info: Redefining \nameref on input line 58.
 
 (./clarkia-reproductive-assurance.out) (./clarkia-reproductive-assurance.out)
 \@outlinefile=\write3
@@ -732,63 +732,117 @@ LaTeX Info: Redefining \nameref on input line 56.
 
 \c__siunitx_mathsf_int=\count195
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 56.
+(Font)              <7> on input line 58.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 56.
+(Font)              <5> on input line 58.
 \c__siunitx_mathtt_int=\count196
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 68.
+(Font)              <12> on input line 70.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 68.
+(Font)              <8> on input line 70.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 68.
+(Font)              <6> on input line 70.
 
 [1
 
 {/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12]
-Overfull \hbox (6.37096pt too wide) in paragraph at lines 171--172
+Overfull \hbox (6.37096pt too wide) in paragraph at lines 173--174
 \OT1/cmr/m/n/10 Data and code are avail-able on Github at https://github.com/me
 ganbontrager/clarkia-reproductive-assurance.
  []
 
-(./clarkia-reproductive-assurance.bbl [13] [14] [15]) [16] [17] [18]
-<figs/map.pdf, id=295, 361.35pt x 361.35pt>
+(./clarkia-reproductive-assurance.bbl [13] [14] [15]) [16] [1]pdfTeX warning (e
+xt4): destination with the same identifier (name{page.}) has been already used,
+ duplicate ignored
+<to be read again> 
+                   \relax 
+l.233 \end{landscape}
+                      [2]pdfTeX warning (ext4): destination with the same ident
+ifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.255 \clearpage
+                 [3
+
+
+
+
+
+] <figs/map.pdf, id=309, 361.35pt x 361.35pt>
 File: figs/map.pdf Graphic file (type pdf)
- <use figs/map.pdf>
-Package pdftex.def Info: figs/map.pdf used on input line 238.
+
+<use figs/map.pdf>
+Package pdftex.def Info: figs/map.pdf used on input line 260.
 (pdftex.def)             Requested size: 281.85587pt x 281.85738pt.
- [19 <./figs/map.pdf>] <figs/climate.pdf, id=308, 234.8775pt x 578.16pt>
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.266 \clearpage
+                 [4 <./figs/map.pdf>]
+<figs/climate.pdf, id=319, 234.8775pt x 578.16pt>
 File: figs/climate.pdf Graphic file (type pdf)
  <use figs/climate.pdf>
-Package pdftex.def Info: figs/climate.pdf used on input line 249.
+Package pdftex.def Info: figs/climate.pdf used on input line 271.
 (pdftex.def)             Requested size: 225.4804pt x 555.0273pt.
-
-[20 <./figs/climate.pdf>] <figs/seeds_region.pdf, id=320, 289.08pt x 289.08pt>
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.277 \clearpage
+                 [5 <./figs/climate.pdf>]
+<figs/seeds_region.pdf, id=328, 289.08pt x 289.08pt>
 File: figs/seeds_region.pdf Graphic file (type pdf)
 
 <use figs/seeds_region.pdf>
-Package pdftex.def Info: figs/seeds_region.pdf used on input line 260.
+Package pdftex.def Info: figs/seeds_region.pdf used on input line 282.
 (pdftex.def)             Requested size: 234.8775pt x 234.8769pt.
- [21 <./figs/seeds_region.pdf>]
-<figs/fruits_region.pdf, id=330, 289.08pt x 289.08pt>
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.288 \clearpage
+                 [6 <./figs/seeds_region.pdf>]
+<figs/fruits_region.pdf, id=337, 289.08pt x 289.08pt>
 File: figs/fruits_region.pdf Graphic file (type pdf)
 
 <use figs/fruits_region.pdf>
-Package pdftex.def Info: figs/fruits_region.pdf used on input line 271.
+Package pdftex.def Info: figs/fruits_region.pdf used on input line 293.
 (pdftex.def)             Requested size: 234.8775pt x 234.8769pt.
- [22 <./figs/fruits_region.pdf>]
-<figs/fruit_climate.pdf, id=340, 578.16pt x 289.08pt>
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.299 \clearpage
+                 [7 <./figs/fruits_region.pdf>]
+<figs/fruit_climate.pdf, id=346, 578.16pt x 289.08pt>
 File: figs/fruit_climate.pdf Graphic file (type pdf)
 
 <use figs/fruit_climate.pdf>
-Package pdftex.def Info: figs/fruit_climate.pdf used on input line 282.
+Package pdftex.def Info: figs/fruit_climate.pdf used on input line 304.
 (pdftex.def)             Requested size: 469.75502pt x 234.8769pt.
- [23 <./figs/fruit_climate.pdf>] [24]
-Underfull \vbox (badness 10000) detected at line 349
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
+een already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.313 \clearpage
+                 [8 <./figs/fruit_climate.pdf>]pdfTeX warning (ext4): destinati
+on with the same identifier (name{page.1}) has been already used, duplicate ign
+ored
+<to be read again> 
+                   \relax 
+l.341 \clearpage
+                 [1]
+Underfull \vbox (badness 10000) detected at line 375
  []
 
-[25
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.398 \end{longtable}
+                      [2
 
 
 
@@ -797,58 +851,85 @@ Underfull \vbox (badness 10000) detected at line 349
 
 
 
+]pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.399 \end{landscape}
+                      [3]pdfTeX warning (ext4): destination with the same ident
+ifier (name{page.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.409 \clearpage
+                 [4
 
 
-
-
-] [26] <figs/seeds_water.pdf, id=371, 578.16pt x 289.08pt>
+] <figs/seeds_water.pdf, id=378, 578.16pt x 289.08pt>
 File: figs/seeds_water.pdf Graphic file (type pdf)
 
 <use figs/seeds_water.pdf>
-Package pdftex.def Info: figs/seeds_water.pdf used on input line 380.
+Package pdftex.def Info: figs/seeds_water.pdf used on input line 413.
 (pdftex.def)             Requested size: 469.75502pt x 234.8769pt.
- [27 <./figs/seeds_water.pdf>]
-<figs/fruits_water.pdf, id=381, 578.16pt x 289.08pt>
+pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.419 \clearpage
+                 [5 <./figs/seeds_water.pdf>]
+<figs/fruits_water.pdf, id=387, 578.16pt x 289.08pt>
 File: figs/fruits_water.pdf Graphic file (type pdf)
 
 <use figs/fruits_water.pdf>
-Package pdftex.def Info: figs/fruits_water.pdf used on input line 391.
+Package pdftex.def Info: figs/fruits_water.pdf used on input line 424.
 (pdftex.def)             Requested size: 469.75502pt x 234.8769pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 397.
- [28 <./figs/fruits_water.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 397.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 430.
+pdfTeX warning (ext4): destination with the same identifier (name{page.6}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.430 \end{document}
+                     [6 <./figs/fruits_water.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 430.
 
 (./clarkia-reproductive-assurance.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 397.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 397.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 430.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 430.
 Package rerunfilecheck Info: File `clarkia-reproductive-assurance.out' has not 
 changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 397.
- ) 
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 430.
+ )
+(\end occurred inside a group at level 5)
+
+### simple group (level 5) entered at line 252 ({)
+### simple group (level 4) entered at line 249 ({)
+### simple group (level 3) entered at line 246 ({)
+### simple group (level 2) entered at line 243 ({)
+### simple group (level 1) entered at line 240 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 17552 strings out of 492995
- 338664 string characters out of 6132704
- 403648 words of memory out of 5000000
- 20860 multiletter control sequences out of 15000+600000
+ 17543 strings out of 492995
+ 338607 string characters out of 6132704
+ 402153 words of memory out of 5000000
+ 20861 multiletter control sequences out of 15000+600000
  11409 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,11n,53p,10381b,892s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
-sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/t
-exlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/tex
-live/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texl
-ive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on clarkia-reproductive-assurance.pdf (28 pages, 264209 bytes).
+ 36i,11n,53p,10381b,969s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+17.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.
+pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
+></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><
+/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></
+usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on clarkia-reproductive-assurance.pdf (30 pages, 264665 bytes).
 PDF statistics:
- 449 PDF objects out of 1000 (max. 8388607)
- 390 compressed objects within 4 object streams
- 101 named destinations out of 1000 (max. 500000)
+ 453 PDF objects out of 1000 (max. 8388607)
+ 392 compressed objects within 4 object streams
+ 91 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

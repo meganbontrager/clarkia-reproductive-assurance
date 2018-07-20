@@ -37,6 +37,8 @@
     allbordercolors={0.8 0.8 0.8},%
     colorlinks=FALSE,%
     ]{hyperref}
+    
+\renewcommand*{\figureautorefname}{Fig.}
 
 \usepackage{caption}
 \captionsetup{labelsep=space,justification=justified,singlelinecheck=off}
@@ -175,8 +177,9 @@ The authors declare that they have no conflict of interest.
 
 \bibliography{biblio}
 
-
 \clearpage
+
+\pagenumbering{gobble}
 
 
 \begin{landscape}
@@ -232,11 +235,30 @@ The authors declare that they have no conflict of interest.
 
 \clearpage
 
+\section*{Figure captions}
+
+\noindent{\textbf{\autoref{map}} Experimental sites relative to the geographic range of \textit{Clarkia pulchella}]{Experimental sites relative to the geographic range of \textit{Clarkia pulchella} (shaded area). N1 and N2 are northern sites; S1, S2, and S3 are southwestern sites, and C1, C2, and C3 are central sites. For geographic coordinates and elevations, see \autoref{siteinfo}}
+\bigskip
+
+\noindent{\textbf{\autoref{climate}} Climate conditions in experimental sites in each region]{Climate conditions in experimental sites in each region. Boxplots summarize annual values over a 50-year time window (1963-2012). Triangles represent conditions during the experiment. Also shown are climate projections for 2055 under two different emissions scenarios (circles: CanESM RCP 4.5; squares: CanESM RCP 8.5). Historic and future values extracted from ClimateWNA \citep{wang2012climatewna}, weather during the experiment was downloaded from PRISM (PRISM Climate Group, Oregon State University, prism.oregonstate.edu)}
+\bigskip
+
+\noindent{\textbf{\autoref{seedsregion}} Seed set in plots with and without pollinators by region]{Seeds per fruit in plots with and without pollinators in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data}
+\bigskip
+
+\noindent{\textbf{\autoref{fruitsregion}} Fruits per plant in plots with and without pollinators by region]{Fruits per plant in plots with and without pollinators in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data}
+\bigskip
+
+\noindent{\textbf{\autoref{fruitsclimate}} Effects of climate and pollinator exclusion on per-plant fruit production]{\textbf{(A)} Effects of summer precipitation during the experiment (2015) and pollinator exclusion on per-plant fruit production. \textbf{(B)} Effects of mean annual temperature (1963-2012) and pollinator exclusion on per-plant fruit production. Average per-plant fruit counts in plots with and without pollinators are also plotted. Lines represent model predictions; shaded areas represent 95\% confidence intervals. Each pair of stacked dots represent raw means of plants with (black) and without pollinators (grey) in a site}
+\bigskip
+
+\clearpage
+
 
 \begin{figure}[p]
 \centering
 \includegraphics[width = 0.6\textwidth]{figs/map}
-\caption[Experimental sites relative to the geographic range of \textit{Clarkia pulchella}]{Experimental sites relative to the geographic range of \textit{Clarkia pulchella} (shaded area). N1 and N2 are northern sites; S1, S2, and S3 are southwestern sites, and C1, C2, and C3 are central sites. For geographic coordinates and elevations, see \autoref{siteinfo}.}
+\caption{}
 \label{map}
 \end{figure}
 
@@ -247,7 +269,7 @@ The authors declare that they have no conflict of interest.
 \begin{figure}[p]
 \centering
 \includegraphics[width = 0.48\textwidth]{figs/climate}
-\caption[Climate conditions in experimental sites in each region]{Climate conditions in experimental sites in each region. Boxplots summarize annual values over a 50-year time window (1963-2012). Triangles represent conditions during the experiment. Also shown are climate projections for 2055 under two different emissions scenarios (circles: CanESM RCP 4.5; squares: CanESM RCP 8.5). Historic and future values extracted from ClimateWNA \citep{wang2012climatewna}, weather during the experiment was downloaded from PRISM (PRISM Climate Group, Oregon State University, prism.oregonstate.edu).}
+\caption{}
 \label{climate}
 \end{figure}
 
@@ -258,7 +280,7 @@ The authors declare that they have no conflict of interest.
 \begin{figure}[p]
 \centering
 \includegraphics[width = 0.5\textwidth]{figs/seeds_region}
-\caption[Seed set in plots with and without pollinators by region]{Seeds per fruit in plots with and without pollinators in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data.}
+\caption{}
 \label{seedsregion}
 \end{figure}
 
@@ -269,7 +291,7 @@ The authors declare that they have no conflict of interest.
 \begin{figure}[p]
 \centering
 \includegraphics[width = 0.5\textwidth]{figs/fruits_region}
-\caption[Fruits per plant in plots with and without pollinators by region]{Fruits per plant in plots with and without pollinators in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data.}
+\caption{}
 \label{fruitsregion}
 \end{figure}
 
@@ -280,15 +302,19 @@ The authors declare that they have no conflict of interest.
 \begin{figure}[p]
 \centering
 \includegraphics[width = \textwidth]{figs/fruit_climate}
-\caption[Effects of climate and pollinator exclusion on per-plant fruit production]{\textbf{(A)} Effects of summer precipitation during the experiment (2015) and pollinator exclusion on per-plant fruit production. \textbf{(B)} Effects of mean annual temperature (1963-2012) and pollinator exclusion on per-plant fruit production. Average per-plant fruit counts in plots with and without pollinators are also plotted. Lines represent model predictions; shaded areas represent 95\% confidence intervals. Each pair of stacked dots represent raw means of plants with (black) and without pollinators (grey) in a site.}
+\caption{}
 \label{fruitsclimate}
 \end{figure}
 
 
 \beginsupplement
 
+    
 \clearpage
 
+\pagenumbering{arabic}
+    \setcounter{page}{1}
+    
 
 \begin{table}[p]
 \centering
@@ -372,13 +398,20 @@ Spring precip.\ (2015)          & 0.34           & 0.43      & 0.61      & 0.02 
 \end{longtable}
 \end{landscape}
 
+\clearpage
+
+\noindent{\textbf{\autoref{seedswater}} Seeds per fruit in plots with factorial pollinator exclusion and water addition treatments in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data. Despite a statistically significant interaction between pollinators and water addition (analyses not shown), the biological effect of watering on seed set appears negligible}
+\bigskip
+
+\noindent{\textbf{\autoref{fruitswater}} Fruits per plant in plots with factorial pollinator exclusion and water addition treatments in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data. Despite statistically significant interactions between pollinators and water addition, as well as between region and water addition (analyses not shown), the biological effect of watering on fruit number appears negligible}
+
 
 \clearpage
 
 \begin{figure}[p]
 \centering
 \includegraphics[width = \textwidth]{figs/seeds_water.pdf}
-\caption{Seeds per fruit in plots with factorial pollinator exclusion and water addition treatments in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data. Despite a statistically significant interaction between pollinators and water addition (analyses not shown), the biological effect of watering on seed set appears negligible.}
+\caption{}
 \label{seedswater}
 \end{figure}
 
@@ -389,7 +422,7 @@ Spring precip.\ (2015)          & 0.34           & 0.43      & 0.61      & 0.02 
 \begin{figure}[p]
 \centering
 \includegraphics[width = \textwidth]{figs/fruits_water.pdf}
-\caption{Fruits per plant in plots with factorial pollinator exclusion and water addition treatments in each of three geographic regions within the range of \textit{Clarkia pulchella}. Boxplots show the median, first and third quartiles, and range of the raw data; black points and error bars show the model-fitted means and 95\% confidence intervals; open triangles are raw means of the data. Despite statistically significant interactions between pollinators and water addition, as well as between region and water addition (analyses not shown), the biological effect of watering on fruit number appears negligible.}
+\caption{}
 \label{fruitswater}
 \end{figure}
 
