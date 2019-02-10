@@ -8,12 +8,22 @@ library(magrittr) # for %<>%
 
 # load and prep data ------------------------------------------------------
 
+# site locations
+locs = read.csv("data/all_clim.csv") %>% 
+  select(site, lat)
+
 # import fruit data
 fruit_data <- read.csv("data/fruits.csv") %>% 
   filter(damage != "yes") %>% # remove damaged plants
   dplyr::select(fruits, net, water, region, site, blocksite, MAP_hist, 
                 MAT_hist, Tsum_exp, PPT_sm_exp) %>% # select relevant columns
   mutate(pollinators = ifelse(net == "yes", "no", "yes")) # make inverted column, if plot was netted, no pollinators
+
+fruit_data = left_join(fruit_data, locs)
+
+plants_per_plot = fruit_data %>% group_by(site, net, water, blocksite) %>% summarize(num_plants = n())
+
+fruit_data = left_join(fruit_data, plants_per_plot)
 
 fruit_data$pollinators = factor(fruit_data$pollinators, levels = c("yes", "no")) # code this as a factor
 
@@ -29,6 +39,9 @@ seed_data <- read.csv("data/seeds.csv") %>%
   dplyr::select(seeds, net, water, region, site, blocksite, MAP_hist,
                 MAT_hist, Tsum_exp, PPT_sm_exp) %>% # select relevant columns
   mutate(pollinators = ifelse(net == "yes", "no", "yes")) # make inverted column, if plot was netted, no pollinators
+
+seed_data = left_join(seed_data, locs)
+seed_data = left_join(seed_data, plants_per_plot)
 
 seed_data$pollinators = factor(seed_data$pollinators, levels = c("yes", "no")) # code this as a factor
 
@@ -60,6 +73,9 @@ seed_data$trt = paste0("Net", seed_data$net, "Water", seed_data$water)
 seed_data$trtlabel = ifelse(seed_data$trt == "NetnoWaterno", "control", ifelse(seed_data$trt == "NetnoWateryes", "water addition", ifelse(seed_data$trt == "NetyesWaterno","pollinator exclusion", "both")))
 # order labels
 seed_data$trtlabel = factor(seed_data$trtlabel, levels = c("control", "water addition", "pollinator exclusion", "both"))
+
+# table of seed set in different treatments
+seed_data %>% group_by(pollinators, region) %>% summarize(seeds = mean(seeds))
 
 # model including water
 seeds_reg_wat = glmmTMB(seeds ~ region*pollinators*water + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
@@ -164,7 +180,7 @@ ggsave("figs/fruits_water.pdf", height = 4, width = 8)
 hist(seed_data$seeds, breaks = 40)
 
 # run model
-seeds_reg_mod = glmmTMB(seeds ~ region*pollinators + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
+seeds_reg_mod = glmmTMB(seeds ~ region*pollinators + num_plants + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
 summary(seeds_reg_mod)
 # effect of pollinators, interaction between pollinators and north
 
@@ -199,11 +215,40 @@ ggplot() +
   theme(legend.position = c(0.1, 0.8))
 ggsave("figs/seeds_region.pdf", width = 4, height = 4)
 
+# latitude and seeds --------------------------------------------------------
+
+# run model
+seeds_lat_mod = glmmTMB(seeds ~ poly(lat,2)*pollinators + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
+summary(seeds_lat_mod)
+
+# generate model predictions for plotting
+pred_lat = ggaverage(seeds_lat_mod, term = c("lat", "pollinators"))
+# check it out
+plot(pred_lat)
+# with pollinators, linear increase in seed production across latitude
+# without pollinators, slight uptick in seed production at both high and low latitudes
+
+
+# center-edge contrasts -----------------------------------------------------
+
+# generate center-edge factor
+seed_data$center_edge = ifelse(seed_data$region == "Center", "Center", "Edge")
+
+# run model
+seeds_ce_mod = glmmTMB(seeds ~ center_edge*pollinators + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
+summary(seeds_ce_mod)
+
+# generate model predictions for plotting
+pred_ce = ggpredict(seeds_ce_mod, term = c("center_edge", "pollinators"))
+# check it out
+plot(pred_ce)
+# with pollinators, linear increase in seed production across latitude
+# without pollinators, slight uptick in seed production at both high and low latitudes
 
 
 # seeds and summer precipitation -------------------------------------------
 
-seeds_pptsum_mod = glmmTMB(seeds ~ PPT_sm_exp*pollinators + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
+seeds_pptsum_mod = glmmTMB(seeds ~ PPT_sm_exp*pollinators + num_plants + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
 summary(seeds_pptsum_mod)
 # only pollinator exclusion
 
@@ -214,7 +259,7 @@ plot(pred)
 
 # seeds and summer temperature ----------------------------------------------
 
-seeds_tsum_mod = glmmTMB(seeds ~ Tsum_exp*pollinators + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
+seeds_tsum_mod = glmmTMB(seeds ~ Tsum_exp*pollinators + num_plants + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
 summary(seeds_tsum_mod)
 # only pollinator exclusion
 
@@ -225,7 +270,7 @@ plot(pred)
 
 # seeds and MAT ------------------------------------------------------------
 
-seeds_mat_mod = glmmTMB(seeds ~ MAT_hist*pollinators + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
+seeds_mat_mod = glmmTMB(seeds ~ MAT_hist*pollinators + num_plants + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
 summary(seeds_mat_mod)
 # only pollinator exclusion
 
@@ -236,7 +281,7 @@ plot(pred)
 
 # seeds and MAP ------------------------------------------------------------
 
-seeds_map_mod = glmmTMB(seeds ~ MAP_hist*pollinators + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
+seeds_map_mod = glmmTMB(seeds ~ MAP_hist*pollinators + num_plants + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
 summary(seeds_map_mod)
 # effect of pollinator exclusion, marginally significant interaction
 
@@ -253,8 +298,11 @@ summary(fruit_data$fruits)
 # how many pseudo-0s?
 dim(fruit_data[fruit_data$fruits == 0,]); dim(fruit_data)
 
+cor(fruit_data$fruits, fruit_data$num_plants)
+plot(fruit_data$fruits, fruit_data$num_plants)
+
 # run model
-fruits_reg_mod = glmmTMB(fruits ~ region*pollinators + (1|site/blocksite), data = fruit_data, family = nbinom2)
+fruits_reg_mod = glmmTMB(fruits ~ region*pollinators + num_plants + (1|site/blocksite), data = fruit_data, family = nbinom2)
 summary(fruits_reg_mod)
 # significant effect of north, pollinator exclusion, marginal interaction between these two factors
 
@@ -299,7 +347,7 @@ ggsave("figs/fruits_region.pdf", width = 4, height = 4)
 # fruits and summer precipitation ------------------------------------------
 
 # run model
-fruits_pptsum_mod = glmmTMB(fruits ~ PPT_sm_exp*pollinators + (1|site/blocksite), data = fruit_data, family = nbinom2)
+fruits_pptsum_mod = glmmTMB(fruits ~ PPT_sm_exp*pollinators + num_plants + (1|site/blocksite), data = fruit_data, family = nbinom2)
 summary(fruits_pptsum_mod)
 # pollintors significant, significant interaction
 
@@ -333,7 +381,7 @@ a = ggplot() +
 
 # fruits and summer temperature -------------------------------------------
 
-fruits_tsum_mod = glmmTMB(fruits ~ Tsum_exp*pollinators + (1|site/blocksite), data = fruit_data, family = nbinom2)
+fruits_tsum_mod = glmmTMB(fruits ~ Tsum_exp*pollinators + num_plants + (1|site/blocksite), data = fruit_data, family = nbinom2)
 summary(fruits_tsum_mod)
 # only pollinators significant
 
@@ -345,7 +393,7 @@ plot(pred)
 # fruits and MAT ----------------------------------------------------------
 
 # run model
-fruits_mat_mod = glmmTMB(fruits ~ MAT_hist*pollinators + (1|site/blocksite), data = fruit_data, family = nbinom2)
+fruits_mat_mod = glmmTMB(fruits ~ MAT_hist*pollinators + num_plants + (1|site/blocksite), data = fruit_data, family = nbinom2)
 summary(fruits_mat_mod)
 # MAT significant, pollinators significant, marginal interaction
 
@@ -383,7 +431,7 @@ ggsave("figs/fruit_climate.pdf", width = 8, height = 4)
 
 # fruits and MAP ----------------------------------------------------------
 
-fruits_map_mod = glmmTMB(fruits ~ MAP_hist*pollinators + (1|site/blocksite), data = fruit_data, family = nbinom2)
+fruits_map_mod = glmmTMB(fruits ~ MAP_hist*pollinators + num_plants + (1|site/blocksite), data = fruit_data, family = nbinom2)
 summary(fruits_map_mod)
 # only pollinators significant
 
@@ -528,4 +576,6 @@ ggplot(seeds_binom_water, aes(y = prop_seeds, x = region, fill = water)) +
   geom_boxplot() +
   xlab("Region") +
   ylab("Proportion seed set in\nabsence of pollinators")
+
+
 

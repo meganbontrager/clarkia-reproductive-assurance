@@ -3,6 +3,8 @@
 library(dplyr)
 clim <- read.csv("data/all_clim.csv") 
 
+cor.test(clim$MAT_hist, clim$PPT_sm_exp)
+
 # slim down data to sets of interest
 clim_temp <- clim %>% 
   dplyr::select(MAT_hist:Tsum_hist, MAT_exp:Tsum_exp)

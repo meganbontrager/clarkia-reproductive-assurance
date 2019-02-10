@@ -2,3 +2,12 @@
 .Rhistory
 .RData
 .Ruserdata
+*_firstSubmission*
+*.bbl
+*.aux
+*.blg
+*.log
+*.out
+*.synctex.gz
+revisions/*
+first_submission/*
