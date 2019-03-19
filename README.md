@@ -2,7 +2,7 @@
 
 Data and code associated with:
 
-Geographic and climatic drivers of reproductive assurance in _Clarkia pulchella_  
+Geographic variation in reproductive assurance of _Clarkia pulchella_  
   
 Megan Bontrager, Christopher D. Muir, and Amy L. Angert   
 
