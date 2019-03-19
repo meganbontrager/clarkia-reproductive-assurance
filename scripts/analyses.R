@@ -17,7 +17,7 @@ fruit_data <- read.csv("data/fruits.csv") %>%
   filter(damage != "yes") %>% # remove damaged plants
   dplyr::select(fruits, net, water, region, site, blocksite, MAP_hist, 
                 MAT_hist, Tsum_exp, PPT_sm_exp) %>% # select relevant columns
-  mutate(pollinators = ifelse(net == "yes", "no", "yes")) # make inverted column, if plot was netted, no pollinators
+  mutate(pollinators = ifelse(net == "yes", "Without", "With")) # make inverted column, if plot was netted, no pollinators
 
 fruit_data = left_join(fruit_data, locs)
 
@@ -25,7 +25,7 @@ plants_per_plot = fruit_data %>% group_by(site, net, water, blocksite) %>% summa
 
 fruit_data = left_join(fruit_data, plants_per_plot)
 
-fruit_data$pollinators = factor(fruit_data$pollinators, levels = c("yes", "no")) # code this as a factor
+fruit_data$pollinators = factor(fruit_data$pollinators, levels = c("With", "Without")) # code this as a factor
 
 # calculate means and SDs of predictors to backtransform for plots after scaling
 PPT_sm_exp_mean = mean(fruit_data$PPT_sm_exp) 
@@ -38,12 +38,12 @@ seed_data <- read.csv("data/seeds.csv") %>%
   filter(exclude_seeds_estimated != "yes") %>% # exclude fruits without precise seed counts
   dplyr::select(seeds, net, water, region, site, blocksite, MAP_hist,
                 MAT_hist, Tsum_exp, PPT_sm_exp) %>% # select relevant columns
-  mutate(pollinators = ifelse(net == "yes", "no", "yes")) # make inverted column, if plot was netted, no pollinators
+  mutate(pollinators = ifelse(net == "yes",  "Without", "With")) # make inverted column, if plot was netted, no pollinators
 
 seed_data = left_join(seed_data, locs)
 seed_data = left_join(seed_data, plants_per_plot)
 
-seed_data$pollinators = factor(seed_data$pollinators, levels = c("yes", "no")) # code this as a factor
+seed_data$pollinators = factor(seed_data$pollinators, levels = c("With", "Without")) # code this as a factor
 
 # scale all predictors
 fruit_data$MAP_hist %<>% scale() %>% as.vector()
@@ -61,7 +61,7 @@ fruit_data$fruits %<>% subtract(1)
 
 
 
-# plots and models with water addition: seeds -----------------------------
+# region and seeds --------------------------------------------------------
 
 # make region a factor with center first for models, but in geographic order for plotting
 seed_data$region = factor(seed_data$region, levels = c("Center", "North", "Southwest"))
@@ -76,105 +76,6 @@ seed_data$trtlabel = factor(seed_data$trtlabel, levels = c("control", "water add
 
 # table of seed set in different treatments
 seed_data %>% group_by(pollinators, region) %>% summarize(seeds = mean(seeds))
-
-# model including water
-seeds_reg_wat = glmmTMB(seeds ~ region*pollinators*water + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
-summary(seeds_reg_wat)
-# significant pollinator*water interaction
-
-# generate model predictions for plotting
-pred_seeds_wat = ggaverage(seeds_reg_wat, term = c("region", "water", "pollinators"))
-# check it out
-plot(pred_seeds_wat)
-# convert numeric levels to regions
-pred_seeds_wat$region = c("Center", "Center","Center", "Center", "North", "North", "North", "North", "Southwest", "Southwest", "Southwest", "Southwest")
-# again, create different order for plotting
-pred_seeds_wat$region_ordered = factor(pred_seeds_wat$region, levels = c("Southwest", "Center", "North"))
-# make water column
-pred_seeds_wat$water = factor(pred_seeds_wat$group, levels = c("yes", "no"))
-# make pollinator column
-pred_seeds_wat$pollinators = factor(pred_seeds_wat$facet, levels = c("yes", "no"))
-# make combined treatment column
-pred_seeds_wat$trtlabel = ifelse(pred_seeds_wat$water == "no" & pred_seeds_wat$pollinators == "yes", "control", ifelse(pred_seeds_wat$water == "yes" & pred_seeds_wat$pollinators == "yes", "water addition", ifelse(pred_seeds_wat$water == "no" & pred_seeds_wat$pollinators == "no", "pollinator exclusion", "both")))
-# order these levels
-pred_seeds_wat$trtlabel = factor(pred_seeds_wat$trtlabel, levels = c("control", "water addition", "pollinator exclusion", "both"))
-
-# make plot
-ggplot() +
-  # boxplots of raw data
-  geom_boxplot(data = seed_data, aes(y = seeds, x = region_ordered, fill = trtlabel), outlier.size = 0.7) +
-  # predicted means
-  geom_point(data = pred_seeds_wat, aes(y = predicted, x = region_ordered, group = trtlabel), size = 2, 
-                  position = position_dodge(width = 0.75)) +
-  # confidence intervals
-  geom_errorbar(data = pred_seeds_wat, aes(ymin = conf.low, ymax = conf.high, x = region_ordered, group = trtlabel), size = 0.9, 
-                       position = position_dodge(width = 0.75), width = 0.2) +
-  # raw means
-  stat_summary(data = seed_data, aes(y = seeds, x = as.numeric(region_ordered) + 0.05, group = trtlabel), geom = "point", fun.data = "mean_se", 
-               position = position_dodge(width = 0.75), shape = 2, color = "black") +
-  xlab("Region") +
-  ylab("Seeds per fruit") +
-  scale_fill_discrete(name = "Treatment")
-ggsave("figs/seeds_water.pdf", height = 4, width = 8)
-
-
-
-# plots and models with water addition: fruits ----------------------------
-
-# make region a factor with center first for models, but in geographic order for plotting
-fruit_data$region = factor(fruit_data$region, levels = c("Center", "North", "Southwest"))
-fruit_data$region_ordered = factor(fruit_data$region, levels = c("Southwest", "Center", "North"))
-
-# make a combined treatment column
-fruit_data$trt = paste0("Net", fruit_data$net, "Water", fruit_data$water)
-# convert to pretty labels
-fruit_data$trtlabel = ifelse(fruit_data$trt == "NetnoWaterno", "control", ifelse(fruit_data$trt == "NetnoWateryes", "water addition", ifelse(fruit_data$trt == "NetyesWaterno", "pollinator exclusion", "both")))
-# order labels
-fruit_data$trtlabel = factor(fruit_data$trtlabel, levels = c("control", "water addition", "pollinator exclusion", "both"))
-
-# model including water
-fruits_reg_wat = glmmTMB(fruits ~ region*pollinators*water + (1|site/blocksite), data = fruit_data, family = nbinom2)
-summary(fruits_reg_wat)
-# significant pollinator*water interaction and region*water interaction
-
-# generate model predictions for plotting
-pred_fruit_wat = ggaverage(fruits_reg_wat, term = c("region","water", "pollinators"))
-# check it out
-plot(pred_fruit_wat)
-# convert numeric levels to regions
-pred_fruit_wat$region = c("Center", "Center","Center", "Center", "North", "North", "North", "North", "Southwest", "Southwest", "Southwest", "Southwest")
-# again, create different order for plotting
-pred_fruit_wat$region_ordered = factor(pred_fruit_wat$region, levels = c("Southwest", "Center", "North"))
-# make water column
-pred_fruit_wat$water = factor(pred_fruit_wat$group, levels = c("yes", "no"))
-# make pollinator column
-pred_fruit_wat$pollinators = factor(pred_fruit_wat$facet, levels = c("yes", "no"))
-# make combined treatment column
-pred_fruit_wat$trtlabel = ifelse(pred_fruit_wat$water == "no" & pred_fruit_wat$pollinators == "yes", "control", ifelse(pred_fruit_wat$water == "yes" & pred_fruit_wat$pollinators == "yes", "water addition", ifelse(pred_fruit_wat$water == "no" & pred_fruit_wat$pollinators == "no", "pollinator exclusion", "both")))
-# order these levels
-pred_fruit_wat$trtlabel = factor(pred_fruit_wat$trtlabel, levels = c("control", "water addition", "pollinator exclusion", "both"))
-
-# make plot
-ggplot() +
-  # boxplot of raw data
-  geom_boxplot(data = fruit_data, aes(y = fruits, x = region_ordered, fill = trtlabel), outlier.size = 0.7) +
-  # model predicted means
-  geom_point(data = pred_fruit_wat, aes(y = predicted, x = region_ordered, group = trtlabel), size = 2, 
-             position = position_dodge(width = 0.75)) +
-  # confidence intervals
-  geom_errorbar(data = pred_fruit_wat, aes(ymin = conf.low, ymax = conf.high, x = region_ordered, group = trtlabel), size = 0.9, 
-                position = position_dodge(width = 0.75), width = 0.2) +
-  # raw means
-  stat_summary(data = fruit_data, aes(y = fruits, x = as.numeric(region_ordered) + 0.05, group = trtlabel), geom = "point", fun.data = "mean_se", 
-               position = position_dodge(width = 0.75), shape = 2, color = "black") +
-  xlab("Region") +
-  ylab("Fruits per plant") +
-  scale_fill_discrete(name = "Treatment")
-ggsave("figs/fruits_water.pdf", height = 4, width = 8)
-
-
-
-# region and seeds --------------------------------------------------------
 
 # check out data distribution
 hist(seed_data$seeds, breaks = 40)
@@ -193,10 +94,10 @@ pred_region$region = c("Center", "Center", "North", "North", "Southwest", "South
 # alternate order for plotting
 pred_region$region_ordered = factor(pred_region$region, levels = c("Southwest", "Center", "North"))
 # make pollinator column
-pred_region$pollinators = factor(pred_region$group, levels = c("yes", "no"))
+pred_region$pollinators = factor(pred_region$group, levels = c("With", "Without"))
 
 # make plot
-ggplot() +
+reg_a = ggplot() +
   # boxplots of raw data
   geom_boxplot(data = seed_data, aes(y = seeds, x = region_ordered, fill = pollinators), position = position_dodge(width = 0.8), color = "grey40", outlier.size = 0.7) +
   # model predicted means
@@ -205,45 +106,89 @@ ggplot() +
   # confidence interval
   geom_errorbar(data = pred_region, aes(ymin = conf.low, ymax = conf.high, x = region_ordered, group = pollinators), size = 0.9, 
                   position = position_dodge(width = 0.8), width = 0.2) +
-  # raw means
+  # raw means  
   stat_summary(data = seed_data, aes(y = seeds, x = as.numeric(region_ordered) + 0.1, group = pollinators), geom = "point", fun.data = "mean_se", 
                position = position_dodge(width = 0.75), shape = 2, color = "black") +
   scale_fill_manual(values = c("white", "grey70")) +
   xlab("Region") +
-  ylab("Seed count") +
+  ylab("Number") +
   guides(fill = guide_legend(title = "Pollinators")) +
-  theme(legend.position = c(0.1, 0.8))
-ggsave("figs/seeds_region.pdf", width = 4, height = 4)
+  theme(legend.position = c(0.05, 0.75),
+        axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        legend.title = element_text(size = 12),
+        legend.text = element_text(size = 12),
+        axis.ticks.x = element_blank()); reg_a
 
-# latitude and seeds --------------------------------------------------------
+
+
+# region and fruits --------------------------------------------------------
+
+# make region a factor with center first for models, but in geographic order for plotting
+fruit_data$region = factor(fruit_data$region, levels = c("Center", "North", "Southwest"))
+fruit_data$region_ordered = factor(fruit_data$region, levels = c("Southwest", "Center", "North"))
+
+# make a combined treatment column
+fruit_data$trt = paste0("Net", fruit_data$net, "Water", fruit_data$water)
+# convert to pretty labels
+fruit_data$trtlabel = ifelse(fruit_data$trt == "NetnoWaterno", "control", ifelse(fruit_data$trt == "NetnoWateryes", "water addition", ifelse(fruit_data$trt == "NetyesWaterno", "pollinator exclusion", "both")))
+# order labels
+fruit_data$trtlabel = factor(fruit_data$trtlabel, levels = c("control", "water addition", "pollinator exclusion", "both"))
+
+# check out the distribution
+hist(fruit_data$fruits, breaks = 40)
+summary(fruit_data$fruits)
+# how many pseudo-0s?
+dim(fruit_data[fruit_data$fruits == 0,]); dim(fruit_data)
+
+cor(fruit_data$fruits, fruit_data$num_plants)
+plot(fruit_data$fruits, fruit_data$num_plants)
 
 # run model
-seeds_lat_mod = glmmTMB(seeds ~ poly(lat,2)*pollinators + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
-summary(seeds_lat_mod)
+fruits_reg_mod = glmmTMB(fruits ~ region*pollinators + num_plants + (1|site/blocksite), data = fruit_data, family = nbinom2)
+summary(fruits_reg_mod)
+# significant effect of north, pollinator exclusion, marginal interaction between these two factors
 
 # generate model predictions for plotting
-pred_lat = ggaverage(seeds_lat_mod, term = c("lat", "pollinators"))
+pred_region_fruits = ggaverage(fruits_reg_mod, term = c("region","pollinators"))
 # check it out
-plot(pred_lat)
-# with pollinators, linear increase in seed production across latitude
-# without pollinators, slight uptick in seed production at both high and low latitudes
+plot(pred_region_fruits)
+# create region column in two orders
+pred_region_fruits$region = c("Center", "Center", "North", "North", "Southwest", "Southwest")
+pred_region_fruits$region_ordered = factor(pred_region_fruits$region, levels = c("Southwest", "Center", "North"))
+# create pollinator column
+pred_region_fruits$pollinators = factor(pred_region_fruits$group, levels = c("With", "Without"))
+
+# look at means
+fruit_data %>% 
+  group_by(region) %>% summarize(mean(fruits))
+fruit_data %>% 
+  group_by(net) %>% summarize(mean(fruits))
+
+# make plot
+reg_b = ggplot() +
+  # boxplots of raw data
+  geom_boxplot(data = fruit_data, aes(y = fruits, x = region_ordered, fill = pollinators), position = position_dodge(width = 0.8), color = "grey40", outlier.size = 0.7) +
+  # model means
+  geom_point(data = pred_region_fruits, aes(y = predicted, x = region_ordered, group = group), size = 2, 
+             position = position_dodge(width = 0.8)) +
+  # CIs
+  geom_errorbar(data = pred_region_fruits, aes(ymin = conf.low, ymax = conf.high, x = region_ordered, group = group), size = 0.9, 
+                position = position_dodge(width = 0.8), width = 0.2) +
+  # raw means
+  stat_summary(data = fruit_data, aes(y = fruits, x = as.numeric(region_ordered) + 0.1, group = pollinators), geom = "point", fun.data = "mean_se", 
+               position = position_dodge(width = 0.75), shape = 2, color = "black") +
+  scale_fill_manual(values = c("white", "grey70")) +
+  xlab("Region") +
+  ylab("Number") +
+  guides(fill = FALSE); reg_b
 
 
-# center-edge contrasts -----------------------------------------------------
+plot_grid(reg_a, reg_b, ncol = 1, labels = c("a) Seed counts", "b) Fruit counts"), label_fontface = "plain", 
+          rel_heights = c(0.9, 1), axis = "lr", label_x = 0.03, label_y = 0.98)
+ggsave("revisions_two/Figure3.pdf", height = 7.5, width = 4)
+ggsave("figs/seeds_fruits_region.pdf", height = 7.5, width = 4)
 
-# generate center-edge factor
-seed_data$center_edge = ifelse(seed_data$region == "Center", "Center", "Edge")
-
-# run model
-seeds_ce_mod = glmmTMB(seeds ~ center_edge*pollinators + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
-summary(seeds_ce_mod)
-
-# generate model predictions for plotting
-pred_ce = ggpredict(seeds_ce_mod, term = c("center_edge", "pollinators"))
-# check it out
-plot(pred_ce)
-# with pollinators, linear increase in seed production across latitude
-# without pollinators, slight uptick in seed production at both high and low latitudes
 
 
 # seeds and summer precipitation -------------------------------------------
@@ -290,58 +235,6 @@ plot(pred)
 
 
 
-# region and fruits --------------------------------------------------------
-
-# check out the distribution
-hist(fruit_data$fruits, breaks = 40)
-summary(fruit_data$fruits)
-# how many pseudo-0s?
-dim(fruit_data[fruit_data$fruits == 0,]); dim(fruit_data)
-
-cor(fruit_data$fruits, fruit_data$num_plants)
-plot(fruit_data$fruits, fruit_data$num_plants)
-
-# run model
-fruits_reg_mod = glmmTMB(fruits ~ region*pollinators + num_plants + (1|site/blocksite), data = fruit_data, family = nbinom2)
-summary(fruits_reg_mod)
-# significant effect of north, pollinator exclusion, marginal interaction between these two factors
-
-# generate model predictions for plotting
-pred_region_fruits = ggaverage(fruits_reg_mod, term = c("region","pollinators"))
-# check it out
-plot(pred_region_fruits)
-# create region column in two orders
-pred_region_fruits$region = c("Center", "Center", "North", "North", "Southwest", "Southwest")
-pred_region_fruits$region_ordered = factor(pred_region_fruits$region, levels = c("Southwest", "Center", "North"))
-# create pollinator column
-pred_region_fruits$pollinators = factor(pred_region_fruits$group, levels = c("yes", "no"))
-
-# look at means
-fruit_data %>% 
-  group_by(region) %>% summarize(mean(fruits))
-fruit_data %>% 
-  group_by(net) %>% summarize(mean(fruits))
-
-# make plot
-ggplot() +
-  # boxplots of raw data
-  geom_boxplot(data = fruit_data, aes(y = fruits, x = region_ordered, fill = pollinators), position = position_dodge(width = 0.8), color = "grey40", outlier.size = 0.7) +
-  # model means
-  geom_point(data = pred_region_fruits, aes(y = predicted, x = region_ordered, group = group), size = 2, 
-             position = position_dodge(width = 0.8)) +
-  # CIs
-  geom_errorbar(data = pred_region_fruits, aes(ymin = conf.low, ymax = conf.high, x = region_ordered, group = group), size = 0.9, 
-                position = position_dodge(width = 0.8), width = 0.2) +
-  # raw means
-  stat_summary(data = fruit_data, aes(y = fruits, x = as.numeric(region_ordered) + 0.1, group = pollinators), geom = "point", fun.data = "mean_se", 
-               position = position_dodge(width = 0.75), shape = 2, color = "black") +
-  scale_fill_manual(values = c("white", "grey70")) +
-  xlab("Region") +
-  ylab("Fruit count") +
-  guides(fill = guide_legend(title = "Pollinators")) +
-  theme(legend.position = c(0.1, 0.8))
-ggsave("figs/fruits_region.pdf", width = 4, height = 4)
-
 
 
 # fruits and summer precipitation ------------------------------------------
@@ -363,19 +256,19 @@ fruits_means_pptsm = fruit_data %>%
   group_by(PPT_sm_exp, pollinators, site) %>% 
   summarize(fruits_mean = mean(fruits))
 
-# create plot and same to object for multipanel
-a = ggplot() +
+# create plot and save to object for multipanel
+fr_a = ggplot() +
   geom_ribbon(data = pred_fruits_pptsum, aes(ymin = conf.low, ymax = conf.high, x = (PPT_sm_exp*PPT_sm_exp_sd)+PPT_sm_exp_mean, fill = group), alpha = 0.3) +
   geom_line(data = pred_fruits_pptsum, aes(y = predicted, x = (PPT_sm_exp*PPT_sm_exp_sd)+PPT_sm_exp_mean, color = group), size = 1.5) +
   ylim(0, 7) +
   geom_point(data = fruits_means_pptsm, aes(y = fruits_mean, x = (PPT_sm_exp*PPT_sm_exp_sd)+PPT_sm_exp_mean, color = pollinators), size = 3) +
   xlab("Summer precipitation in 2015 (mm)") +
   ylab("Fruit count") +
-  guides(fill = FALSE, color = FALSE) +
+  theme(legend.position = c(0.05, 0.7),
+        legend.title = element_text(size = 12),
+        legend.text = element_text(size = 12)) +
   scale_fill_manual("Pollinators", values = c("black", "grey50")) +
-  scale_color_manual("Pollinators", values = c("black", "grey50")) +
-  scale_shape_manual(values = c(1, 2, 3, 4, 5, 6, 7, 8)) +
-  guides(shape = FALSE)
+  scale_color_manual("Pollinators", values = c("black", "grey50")); fr_a
 
 
 
@@ -410,22 +303,26 @@ fruits_means_mat = fruit_data %>%
   summarize(fruits_mean = mean(fruits))
 
 # make plot and save to object for multipanel
-b = ggplot() +
+fr_b = ggplot() +
   geom_ribbon(data = pred_fruits_mat, aes(ymin = conf.low, ymax = conf.high, x = (MAT_hist*MAT_sd)+MAT_mean, fill = group), alpha = 0.3) +
   geom_line(data = pred_fruits_mat, aes(y = predicted, x = (MAT_hist*MAT_sd)+MAT_mean, color = group), size = 1.5) +
   # geom_point(data = fruits_means_pptsm, aes(y = fruits, x = (MAT_hist*MAT_sd)+MAT_mean, color = pollinators)) +
   geom_point(data = fruits_means_mat, aes(y = fruits_mean, x = (MAT_hist*MAT_sd)+MAT_mean, color = pollinators), size = 3) +
   xlab("Mean annual temperature (°C)") +
   ylab("Fruit count") +
-  # ylim(0, 7) +
-  scale_shape_manual(values = c(1, 2, 3, 4, 5, 6, 7, 8)) +
+  ylim(0, 7) +
+  guides(fill = FALSE, color = FALSE) +
   scale_fill_manual("Pollinators", values = c("black", "grey50")) +
   scale_color_manual("Pollinators", values = c("black", "grey50")) +
-  theme(legend.position = c(0.6, 0.8)) +
-  guides(shape = FALSE)
+  guides(shape = FALSE) +
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()); fr_b
 
-plot_grid(a, b, labels = c("A", "B"), label_fontface = "bold", rel_widths = c(1, 1))
-ggsave("figs/fruit_climate.pdf", width = 8, height = 4)
+plot_grid(fr_a, fr_b, labels = c("a)", "b)"), label_fontface = "plain", rel_widths = c(1, 0.9), axis = "tb", label_x = c(0.15, 0.05), label_y = 0.98)
+ggsave("figs/fruit_climate.pdf", width = 7.5, height = 4)
+ggsave("revisions_two/Figure4.pdf", width = 7.5, height = 4)
+
 
 
 
@@ -536,7 +433,11 @@ write.csv(results_fruits, "tables/fruits_wide.csv")
 
 
 
-# look at seeds as a proportion of seeds in control plots (unpublished) ------
+# NOT IN MS -----------------------------------------------------------------
+
+
+
+# look at seeds as a proportion of seeds in control plots -------------------
 
 seeds_net = seed_data %>% filter(net == "yes") %>% 
   group_by(region, site, blocksite, MAP_hist, MAT_hist, Tsum_exp, PPT_sm_exp) %>% 
@@ -577,5 +478,124 @@ ggplot(seeds_binom_water, aes(y = prop_seeds, x = region, fill = water)) +
   xlab("Region") +
   ylab("Proportion seed set in\nabsence of pollinators")
 
+
+
+# latitude and seeds --------------------------------------------------------
+
+# run model
+seeds_lat_mod = glmmTMB(seeds ~ poly(lat,2)*pollinators + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
+summary(seeds_lat_mod)
+
+# generate model predictions for plotting
+pred_lat = ggaverage(seeds_lat_mod, term = c("lat", "pollinators"))
+# check it out
+plot(pred_lat)
+# with pollinators, linear increase in seed production across latitude
+# without pollinators, slight uptick in seed production at both high and low latitudes
+
+
+# center-edge contrasts -----------------------------------------------------
+
+# generate center-edge factor
+seed_data$center_edge = ifelse(seed_data$region == "Center", "Center", "Edge")
+
+# run model
+seeds_ce_mod = glmmTMB(seeds ~ center_edge*pollinators + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
+summary(seeds_ce_mod)
+
+# generate model predictions for plotting
+pred_ce = ggpredict(seeds_ce_mod, term = c("center_edge", "pollinators"))
+# check it out
+plot(pred_ce)
+# with pollinators, linear increase in seed production across latitude
+# without pollinators, slight uptick in seed production at both high and low latitudes
+
+
+
+# plots and models with water addition: seeds -----------------------------
+
+# model including water
+seeds_reg_wat = glmmTMB(seeds ~ region*pollinators*water + (1|site/blocksite), data = seed_data, family = nbinom2, ziformula = ~ 1)
+summary(seeds_reg_wat)
+# significant pollinator*water interaction
+
+# generate model predictions for plotting
+pred_seeds_wat = ggaverage(seeds_reg_wat, term = c("region", "water", "pollinators"))
+# check it out
+plot(pred_seeds_wat)
+# convert numeric levels to regions
+pred_seeds_wat$region = c("Center", "Center","Center", "Center", "North", "North", "North", "North", "Southwest", "Southwest", "Southwest", "Southwest")
+# again, create different order for plotting
+pred_seeds_wat$region_ordered = factor(pred_seeds_wat$region, levels = c("Southwest", "Center", "North"))
+# make water column
+pred_seeds_wat$water = factor(pred_seeds_wat$group, levels = c("yes", "no"))
+# make pollinator column
+pred_seeds_wat$pollinators = factor(pred_seeds_wat$facet, levels = c("With", "Without"))
+# make combined treatment column
+pred_seeds_wat$trtlabel = ifelse(pred_seeds_wat$water == "no" & pred_seeds_wat$pollinators == "With", "control", ifelse(pred_seeds_wat$water == "yes" & pred_seeds_wat$pollinators == "With", "water addition", ifelse(pred_seeds_wat$water == "no" & pred_seeds_wat$pollinators == "Without", "pollinator exclusion", "both")))
+# order these levels
+pred_seeds_wat$trtlabel = factor(pred_seeds_wat$trtlabel, levels = c("control", "water addition", "pollinator exclusion", "both"))
+
+# make plot
+ggplot() +
+  # boxplots of raw data
+  geom_boxplot(data = seed_data, aes(y = seeds, x = region_ordered, fill = trtlabel), outlier.size = 0.7) +
+  # predicted means
+  geom_point(data = pred_seeds_wat, aes(y = predicted, x = region_ordered, group = trtlabel), size = 2, 
+             position = position_dodge(width = 0.75)) +
+  # confidence intervals
+  geom_errorbar(data = pred_seeds_wat, aes(ymin = conf.low, ymax = conf.high, x = region_ordered, group = trtlabel), size = 0.9, 
+                position = position_dodge(width = 0.75), width = 0.2) +
+  # raw means
+  stat_summary(data = seed_data, aes(y = seeds, x = as.numeric(region_ordered) + 0.05, group = trtlabel), geom = "point", fun.data = "mean_se", 
+               position = position_dodge(width = 0.75), shape = 2, color = "black") +
+  xlab("Region") +
+  ylab("Seeds per fruit") +
+  scale_fill_discrete(name = "Treatment")
+ggsave("figs/seeds_water.pdf", height = 4, width = 8)
+
+
+
+# plots and models with water addition: fruits ----------------------------
+
+# model including water
+fruits_reg_wat = glmmTMB(fruits ~ region*pollinators*water + (1|site/blocksite), data = fruit_data, family = nbinom2)
+summary(fruits_reg_wat)
+# significant pollinator*water interaction and region*water interaction
+
+# generate model predictions for plotting
+pred_fruit_wat = ggaverage(fruits_reg_wat, term = c("region","water", "pollinators"))
+# check it out
+plot(pred_fruit_wat)
+# convert numeric levels to regions
+pred_fruit_wat$region = c("Center", "Center","Center", "Center", "North", "North", "North", "North", "Southwest", "Southwest", "Southwest", "Southwest")
+# again, create different order for plotting
+pred_fruit_wat$region_ordered = factor(pred_fruit_wat$region, levels = c("Southwest", "Center", "North"))
+# make water column
+pred_fruit_wat$water = factor(pred_fruit_wat$group, levels = c("yes", "no"))
+# make pollinator column
+pred_fruit_wat$pollinators = factor(pred_fruit_wat$facet, levels = c("With", "Without"))
+# make combined treatment column
+pred_fruit_wat$trtlabel = ifelse(pred_fruit_wat$water == "no" & pred_fruit_wat$pollinators == "With", "control", ifelse(pred_fruit_wat$water == "yes" & pred_fruit_wat$pollinators == "With", "water addition", ifelse(pred_fruit_wat$water == "no" & pred_fruit_wat$pollinators == "Without", "pollinator exclusion", "both")))
+# order these levels
+pred_fruit_wat$trtlabel = factor(pred_fruit_wat$trtlabel, levels = c("control", "water addition", "pollinator exclusion", "both"))
+
+# make plot
+ggplot() +
+  # boxplot of raw data
+  geom_boxplot(data = fruit_data, aes(y = fruits, x = region_ordered, fill = trtlabel), outlier.size = 0.7) +
+  # model predicted means
+  geom_point(data = pred_fruit_wat, aes(y = predicted, x = region_ordered, group = trtlabel), size = 2, 
+             position = position_dodge(width = 0.75)) +
+  # confidence intervals
+  geom_errorbar(data = pred_fruit_wat, aes(ymin = conf.low, ymax = conf.high, x = region_ordered, group = trtlabel), size = 0.9, 
+                position = position_dodge(width = 0.75), width = 0.2) +
+  # raw means
+  stat_summary(data = fruit_data, aes(y = fruits, x = as.numeric(region_ordered) + 0.05, group = trtlabel), geom = "point", fun.data = "mean_se", 
+               position = position_dodge(width = 0.75), shape = 2, color = "black") +
+  xlab("Region") +
+  ylab("Fruits per plant") +
+  scale_fill_discrete(name = "Treatment")
+ggsave("figs/fruits_water.pdf", height = 4, width = 8)
 
 
